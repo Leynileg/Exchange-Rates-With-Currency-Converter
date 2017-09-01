@@ -1,0 +1,46 @@
+#conv_multi{
+    width: 100%;
+    height: rem(700px);
+    background: lightblue;
+    
+    * {
+        display: flex;
+        justify-content: center; 
+        align-items: center;  
+    }
+    
+    h2 {
+        padding-top: rem(100px);
+        font-size: rem(50px);
+        text-align: center;
+        color: white;
+    }  
+}
+
+@media (max-width: 600px) {
+    
+    #conv_multi {
+        
+        height: rem(800px);
+        
+        * {
+            width: 100%;
+            display: flex;
+            
+            flex-direction: column;
+            margin-bottom: rem(5px);
+        }
+        
+        h2 {
+           font-size: rem(32px);
+           padding-top: rem(80px);
+           padding-bottom: rem(50px);
+        }
+        
+        input, select {
+            width: 60%;
+            height: rem(25px);
+            margin-bottom: rem(10px);
+        }
+    }  
+}

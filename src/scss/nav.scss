@@ -1,0 +1,81 @@
+ul {
+    width:100%;
+    background:black;
+    height: rem(50px);
+    display: flex;
+    align-items: center;
+    //position: fixed; //<--------------------------- ZRÓB W JS JAK ZJDZIE SIĘ DOŚĆ NA DÓŁ
+    
+    li {
+        display:inline-block;
+        text-align: center;
+        width: 32%;
+        
+        a {
+            color: white;
+            font-size: rem(25px);
+            font-family: sans-serif;
+            padding: rem(10px) rem(30px);
+        }
+        
+        a:hover{
+            background: white;
+            color: black;
+        }
+    }
+}
+
+.sticky {
+  width: 100%;
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 100;
+}
+
+@media (max-width: 370px) {
+    ul {
+        
+        float: left;
+        display: flex;
+        align-items: center;
+        
+        li {
+            margin: rem(15px) auto;
+            text-align: center;
+            width: 32%;
+            
+            
+            a {
+                text-align: center;
+                width: inherit;
+                font-size: rem(11px);
+                padding: rem(19px) rem(8px);
+            }
+        }
+        
+    }
+}
+
+@media (min-width: 371px) and (max-width: 600px) {
+    ul {
+        display: flex;
+        align-items: center;
+        
+        
+        li {
+            margin: rem(16px) auto;
+            text-align: center;
+            width: 32%;
+            
+            a {
+                text-align: center;
+                width: inherit;
+                font-size: rem(14px);
+                padding: rem(17px) rem(11px);
+            }
+        }
+        
+    }
+}
+

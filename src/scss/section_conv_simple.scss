@@ -1,0 +1,82 @@
+#conv_simple {
+    width: 100%;
+    height: rem(850px);
+    background-image: linear-gradient(45deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('https://libreshot.com/wp-content/uploads/2015/05/calculator.jpg');
+    background-size: cover;
+    
+    * {
+        display: flex;
+        justify-content: center; 
+        align-items: center;
+        padding-top: rem(5px);
+        padding-bottom: rem(5px);
+    }
+    
+    h2 {
+        padding-top: rem(100px);
+        padding-bottom: rem(40px);
+        font-size: rem(50px);
+        text-align: center;
+        color: white;
+    }
+    
+    .simpleCalcPutNumber, .simpleCalcSelectFirst, .simpleCalcSelectSecond {
+        width: 30%;
+        height: rem(25px);  
+    }
+    
+    .icon-down-circled, .icon-exchange {
+        font-size: rem(45px);
+        margin: rem(10px) auto;
+        color: white;
+    }
+    
+    .calcResult {
+        font-size: rem(30px);
+        text-align: center;
+    }
+    
+    p {
+        color: white;
+    }
+    
+}
+
+
+@media (max-width: 600px) {
+    
+    #conv_simple {
+        
+        height: rem(950px);
+        
+        * {
+            width: 100%;
+            display: flex;
+            
+            flex-direction: column;
+        }
+        
+        .simpleCalcPutNumber, .simpleCalcSelectFirst, .simpleCalcSelectSecond {
+            width: 60%;
+            height: rem(25px);  
+        }
+        
+        h2 {
+           font-size: rem(32px);
+        }
+        
+
+        p {
+            font-size: rem(25px);
+            margin-bottom: rem(50px);
+        }
+    }  
+}
+
+@media (min-width: 700px) and (max-width: 1100px) {
+    #conv_simple {
+         height: rem(1650px);
+    }
+   
+}
+    

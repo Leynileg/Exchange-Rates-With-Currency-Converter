@@ -1,0 +1,51 @@
+@function rem($size) {
+    $remSize: $size / 16px;
+    @return #{$remSize}rem;
+}
+
+$columns: 12;
+$gap: 6px;
+
+.row {
+    width: 100%;
+    height: auto;
+    margin-bottom: $gap;
+    display: flex;
+    align-items: center;
+    &:after {  
+        content: "";
+        display: table;
+        clear: both;
+    }
+    
+    [class*="col-"] { 
+        float: left;
+        padding-left: ($gap / 2);
+        padding-right: ($gap / 2);
+        display: flex;
+        justify-content: center;
+        align-items: center; 
+    }
+}
+
+
+@for $i from 1 through $columns {
+    .col-#{$i}-#{$columns} {
+       width: (100% / $columns * $i);
+        
+    }
+}
+
+@media (max-width: 768px) {
+    .row {
+        *[class*="col-"] {
+            float: none;
+            width: 100%;
+            margin-bottom: $gap;
+            
+            &:last-child {
+                margin-bottom: 0;
+            }
+        }
+    }
+}
