@@ -7,7 +7,7 @@ class Nav extends React.Component {
             <div>
                 <header id="nav">
                     <ul>
-                        <li><a href='#checkData'>CURRENCY</a></li>
+                        <li><a href='#checkData'>CURRENCIES</a></li>
                         <li><a href='#conv_simple'>SIMPLE</a></li>
                         <li><a href='#conv_multi'>MULTI</a></li>
                     </ul>

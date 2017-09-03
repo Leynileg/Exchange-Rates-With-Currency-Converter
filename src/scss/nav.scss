@@ -1,10 +1,11 @@
 ul {
     width:100%;
     background:black;
+    opacity: 0.85;
     height: rem(50px);
     display: flex;
     align-items: center;
-    //position: fixed; //<--------------------------- ZRÓB W JS JAK ZJDZIE SIĘ DOŚĆ NA DÓŁ
+    position: fixed;
     
     li {
         display:inline-block;

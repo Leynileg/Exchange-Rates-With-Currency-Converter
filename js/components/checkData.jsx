@@ -7,7 +7,7 @@ class CheckData extends React.Component {
         this.state={
             values: [],
             names: [],
-            checked: '',
+            checked: 'AUD',
             checkedValue: ''
         }
     }
@@ -26,11 +26,9 @@ class CheckData extends React.Component {
     }
     
     handleChange=(e)=>{
-        this.setState({checked: e.target.value}); 
-        this.setState({checkedValue: this.state.values[this.state.checked]});
+        this.setState({checked: e.target.value});
+        this.setState({checkedValue: (1 / this.state.values[this.state.checked]).toFixed(4)});
     }
-    
-
     componentDidMount(){
         this.getData();
     }
@@ -47,10 +45,7 @@ class CheckData extends React.Component {
         let options=this.state.names.map((el)=>{
             return <option key={el} value={el}>{el}</option>
         })
-        
-        let checkedd = (1 / this.state.checked).toFixed(4);
-        
-        
+         
         return (
             <div>
                 <section id="checkData">
@@ -75,19 +70,17 @@ class CheckData extends React.Component {
                       </div>
                  </div>
                   <div className="row">
-                    <h1>CHECK SELECTED CURRENCY</h1>
+                    <h1>CHECK CURRENCY</h1>
                   </div>
                   <div className="row">
-                     <div className="col-4-12">
-                    <select className="selectData" onChange={this.handleChange}>
+                     <div className="col-2-12"/>
+                     <div className="col-2-12">
+                    <select className="selectData" onClick={this.handleChange} onChange={this.handleChange}>
                         {options}
                     </select>
                  </div>
-                 <div className="col-2-12">
-                     <div className="littleBoxes">{this.checkedValue}</div>
-                 </div>
-                 <div className="col-6-12">
-                      <div className="dataContainer"></div>
+                 <div className="col-8-12">
+                      <div className="dataContainer">{this.state.checked}: {this.state.checkedValue}</div>
                  </div>
               </div>
           </section>

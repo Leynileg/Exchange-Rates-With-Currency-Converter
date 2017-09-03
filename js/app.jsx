@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import {Nav} from './components/nav.jsx';
 import {CheckData} from './components/checkData.jsx';
 import {ConvSimple} from './components/convSimple.jsx';
-
+import {Footer} from './components/Footer.jsx';
 class App extends React.Component {
     render(){
         return (
@@ -11,6 +11,7 @@ class App extends React.Component {
                 <Nav/>
                 <CheckData/>
                 <ConvSimple/>
+                <Footer/>
             </div>
         )
     }
