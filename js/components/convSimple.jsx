@@ -10,8 +10,7 @@ class ConvSimple extends React.Component {
             firstNumber: 0,
             firstVal: 'AUD',
             secondVal: 'AUD',
-            resultNumber: ''
-            
+            resultNumber: ''   
         }
     }
     
@@ -23,7 +22,6 @@ class ConvSimple extends React.Component {
             } else {throw new Error('Błąd sieci!')};
         })
         .then( obj => {            
-            
             this.setState({values: obj.rates})
             this.setState({names: Object.keys(obj.rates)});
             console.log("VALUES: ", this.state.values)
@@ -56,13 +54,10 @@ class ConvSimple extends React.Component {
         this.setState({resultNumber: ((this.state.firstNumber * firstNumConverter) / secondNumConverter).toFixed(4)})
     }
     
-    
     componentDidMount(){
         this.getData();
     }
 
-    
-    
     render(){
         
         let options=this.state.names.map((el)=>{
