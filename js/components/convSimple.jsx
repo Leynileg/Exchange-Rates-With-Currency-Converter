@@ -16,7 +16,7 @@ class ConvSimple extends React.Component {
     }
     
     getData() {
-        fetch(`http://api.fixer.io/latest?base=${this.state.firstVal}`)
+        fetch(`https://api.fixer.io/latest?base=${this.state.firstVal}`)
         .then( response => {
             if (response.ok) {
                 return response.json();
