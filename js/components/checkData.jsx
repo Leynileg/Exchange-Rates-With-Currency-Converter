@@ -13,7 +13,7 @@ class CheckData extends React.Component {
     }
     
     getData() {
-        fetch('http://api.fixer.io/latest?base=PLN')
+        fetch('https://api.fixer.io/latest?base=PLN')
         .then( response => {
             if (response.ok) {
                 return response.json();
