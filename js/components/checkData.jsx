@@ -29,6 +29,7 @@ class CheckData extends React.Component {
     handleChange=(e)=>{
         this.setState({checked: e.target.value});
         this.setState({checkedValue: (1 / this.state.values[this.state.checked]).toFixed(4)});
+        this.getData();
     }
     componentDidMount(){
         this.getData();
@@ -76,7 +77,7 @@ class CheckData extends React.Component {
                   <div className="row">
                      <div className="col-2-12"/>
                      <div className="col-2-12">
-                    <select className="selectData" onClick={this.handleChange} onChange={this.handleChange}>
+                    <select className="selectData" onChange={this.handleChange}>
                         {options}
                     </select>
                  </div>
