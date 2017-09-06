@@ -10251,6 +10251,8 @@ var _checkData = __webpack_require__(187);
 
 var _convSimple = __webpack_require__(188);
 
+var _Footer = __webpack_require__(189);
+
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -10276,7 +10278,8 @@ var App = function (_React$Component) {
                 null,
                 _react2.default.createElement(_nav.Nav, null),
                 _react2.default.createElement(_checkData.CheckData, null),
-                _react2.default.createElement(_convSimple.ConvSimple, null)
+                _react2.default.createElement(_convSimple.ConvSimple, null),
+                _react2.default.createElement(_Footer.Footer, null)
             );
         }
     }]);
@@ -22961,7 +22964,7 @@ var Nav = function (_React$Component) {
                             _react2.default.createElement(
                                 'a',
                                 { href: '#checkData' },
-                                'KURSY'
+                                'CURRENCIES'
                             )
                         ),
                         _react2.default.createElement(
@@ -22970,7 +22973,7 @@ var Nav = function (_React$Component) {
                             _react2.default.createElement(
                                 'a',
                                 { href: '#conv_simple' },
-                                'PROSTY'
+                                'SIMPLE'
                             )
                         ),
                         _react2.default.createElement(
@@ -23034,7 +23037,6 @@ var CheckData = function (_React$Component) {
         _this.handleChange = function (e) {
             _this.setState({ checked: e.target.value });
             _this.setState({ checkedValue: (1 / _this.state.values[_this.state.checked]).toFixed(4) });
-            console.log(_this.state.checkedValue);
         };
 
         _this.state = {
@@ -23051,7 +23053,7 @@ var CheckData = function (_React$Component) {
         value: function getData() {
             var _this2 = this;
 
-            fetch('http://api.fixer.io/latest?base=PLN').then(function (response) {
+            fetch('https://api.fixer.io/latest?base=PLN').then(function (response) {
                 if (response.ok) {
                     return response.json();
                 } else {
@@ -23060,6 +23062,7 @@ var CheckData = function (_React$Component) {
             }).then(function (obj) {
                 _this2.setState({ values: obj.rates });
                 _this2.setState({ names: Object.keys(obj.rates) });
+                _this2.setState({ checkedValue: (1 / _this2.state.values[_this2.state.checked]).toFixed(4) });
             });
         }
     }, {
@@ -23163,15 +23166,16 @@ var CheckData = function (_React$Component) {
                         _react2.default.createElement(
                             'h1',
                             null,
-                            'SPRAWD\u0179 KURS WYBRANEJ WALUTY'
+                            'CHECK CURRENCY'
                         )
                     ),
                     _react2.default.createElement(
                         'div',
                         { className: 'row' },
+                        _react2.default.createElement('div', { className: 'col-2-12' }),
                         _react2.default.createElement(
                             'div',
-                            { className: 'col-4-12' },
+                            { className: 'col-2-12' },
                             _react2.default.createElement(
                                 'select',
                                 { className: 'selectData', onClick: this.handleChange, onChange: this.handleChange },
@@ -23180,19 +23184,14 @@ var CheckData = function (_React$Component) {
                         ),
                         _react2.default.createElement(
                             'div',
-                            { className: 'col-2-12' },
+                            { className: 'col-8-12' },
                             _react2.default.createElement(
                                 'div',
-                                { className: 'littleBoxes' },
+                                { className: 'dataContainer' },
                                 this.state.checked,
                                 ': ',
                                 this.state.checkedValue
                             )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-6-12' },
-                            _react2.default.createElement('div', { className: 'dataContainer' })
                         )
                     )
                 )
@@ -23244,33 +23243,32 @@ var ConvSimple = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (ConvSimple.__proto__ || Object.getPrototypeOf(ConvSimple)).call(this, props));
 
         _this.numberChange = function (e) {
-            _this.setState({ firstNumber: e.target.value + ' ' });
+            _this.setState({ firstNumber: e.target.value });
         };
 
         _this.FirstSelect = function (e) {
-            _this.setState({ firstVal: e.target.value + ' ' });
+            _this.setState({ firstVal: e.target.value });
+            _this.setState({ resultNumber: '' });
+            _this.getData();
         };
 
         _this.SecondSelect = function (e) {
-            _this.setState({ secondVal: e.target.value + ' ' });
+            _this.setState({ secondVal: e.target.value });
+            _this.setState({ resultNumber: '' });
         };
 
         _this.exchangeValues = function (e) {
-            _this.setState({ firstVal: _this.state.secondVal });
-            _this.setState({ secondVal: _this.state.firstVal });
-            console.log("pierwsze: ", _this.state.firstVal);
-            console.log("drugie: ", _this.state.secondVal);
+            document.querySelector(".simpleCalcSelectFirst").value = _this.state.secondVal;
+            document.querySelector(".simpleCalcSelectSecond").value = _this.state.firstVal;
+            _this.setState({ firstVal: document.querySelector(".simpleCalcSelectFirst").value });
+            _this.setState({ secondVal: document.querySelector(".simpleCalcSelectSecond").value });
+            _this.setState({ resultNumber: '' });
         };
 
-        _this.getResult = function (e) {
+        _this.getResult = function () {
             var firstNumConverter = (1 / _this.state.values[_this.state.firstVal]).toFixed(4);
             var secondNumConverter = (1 / _this.state.values[_this.state.secondVal]).toFixed(4);
-            _this.setState({ resultNumber: (1 / _this.state.values[_this.state.firstVal]).toFixed(4) });
-            //        console.log(this.state.firstVal);
-            //        console.log((1 / this.state.values[this.state.checked]).toFixed(4));
-            //        console.log(this.state.values);
-            //        console.log(this.state.firstVal);
-            console.log(_this.state.resultNumber);
+            _this.setState({ resultNumber: (_this.state.firstNumber * firstNumConverter / secondNumConverter).toFixed(4) });
         };
 
         _this.state = {
@@ -23278,9 +23276,8 @@ var ConvSimple = function (_React$Component) {
             names: [],
             firstNumber: 0,
             firstVal: 'AUD',
-            secondVal: 'AUD',
+            secondVal: '',
             resultNumber: ''
-
         };
         return _this;
     }
@@ -23290,14 +23287,13 @@ var ConvSimple = function (_React$Component) {
         value: function getData() {
             var _this2 = this;
 
-            fetch('http://api.fixer.io/latest?base=PLN').then(function (response) {
+            fetch('https://api.fixer.io/latest?base=' + this.state.firstVal).then(function (response) {
                 if (response.ok) {
                     return response.json();
                 } else {
                     throw new Error('Błąd sieci!');
                 };
             }).then(function (obj) {
-
                 _this2.setState({ values: obj.rates });
                 _this2.setState({ names: Object.keys(obj.rates) });
             });
@@ -23336,7 +23332,7 @@ var ConvSimple = function (_React$Component) {
                             _react2.default.createElement(
                                 'h2',
                                 null,
-                                'PRZELICZNIK PROSTY'
+                                'SIMPLE CURRENCY CONVERTER'
                             )
                         )
                     ),
@@ -23357,7 +23353,12 @@ var ConvSimple = function (_React$Component) {
                             { className: 'col-12-12' },
                             _react2.default.createElement(
                                 'select',
-                                { className: 'simpleCalcSelectFirst', onClick: this.FirstSelect, onChange: this.FirstSelect },
+                                { className: 'simpleCalcSelectFirst', defaultValue: 'default', onChange: this.FirstSelect },
+                                _react2.default.createElement(
+                                    'option',
+                                    { value: 'default', disabled: true },
+                                    'Choose First Currency'
+                                ),
                                 options
                             )
                         )
@@ -23379,7 +23380,12 @@ var ConvSimple = function (_React$Component) {
                             { className: 'col-12-12' },
                             _react2.default.createElement(
                                 'select',
-                                { className: 'simpleCalcSelectSecond', onChange: this.SecondSelect, onClick: this.SecondSelect },
+                                { className: 'simpleCalcSelectSecond', defaultValue: 'default', onChange: this.SecondSelect },
+                                _react2.default.createElement(
+                                    'option',
+                                    { value: 'default', disabled: true },
+                                    'Choose Second Currency'
+                                ),
                                 options
                             )
                         )
@@ -23419,6 +23425,65 @@ var ConvSimple = function (_React$Component) {
 }(_react2.default.Component);
 
 exports.ConvSimple = ConvSimple;
+
+/***/ }),
+/* 189 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
+exports.Footer = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(24);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(27);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var Footer = function (_React$Component) {
+    _inherits(Footer, _React$Component);
+
+    function Footer() {
+        _classCallCheck(this, Footer);
+
+        return _possibleConstructorReturn(this, (Footer.__proto__ || Object.getPrototypeOf(Footer)).apply(this, arguments));
+    }
+
+    _createClass(Footer, [{
+        key: 'render',
+        value: function render() {
+            return _react2.default.createElement(
+                'footer',
+                { className: 'footer' },
+                _react2.default.createElement(
+                    'p',
+                    null,
+                    'Copyrights 2017 | All Rights Reserved. - Exchange Rates With Converters'
+                )
+            );
+        }
+    }]);
+
+    return Footer;
+}(_react2.default.Component);
+
+exports.Footer = Footer;
 
 /***/ })
 /******/ ]);

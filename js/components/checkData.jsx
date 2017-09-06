@@ -22,6 +22,7 @@ class CheckData extends React.Component {
         .then( obj => {            
             this.setState({values: obj.rates})
             this.setState({names: Object.keys(obj.rates)});
+            this.setState({checkedValue: (1 / this.state.values[this.state.checked]).toFixed(4)});
         });
     }
     

@@ -9,8 +9,8 @@ class ConvSimple extends React.Component {
             names: [],
             firstNumber: 0,
             firstVal: 'AUD',
-            secondVal: 'AUD',
-            resultNumber: ''   
+            secondVal: '',
+            resultNumber: ''
         }
     }
     
@@ -24,7 +24,6 @@ class ConvSimple extends React.Component {
         .then( obj => {            
             this.setState({values: obj.rates})
             this.setState({names: Object.keys(obj.rates)});
-            console.log("VALUES: ", this.state.values)
         });
     }
     
@@ -35,6 +34,7 @@ class ConvSimple extends React.Component {
     FirstSelect=(e)=>{
         this.setState({firstVal: e.target.value});
         this.setState({resultNumber: ''});
+        this.getData();
     }
     
     SecondSelect = (e) => {
@@ -43,8 +43,10 @@ class ConvSimple extends React.Component {
     }
     
     exchangeValues = (e) => {
-        this.setState({firstVal: this.state.secondVal});
-        this.setState({secondVal: this.state.firstVal});
+        document.querySelector(".simpleCalcSelectFirst").value = this.state.secondVal;
+        document.querySelector(".simpleCalcSelectSecond").value = this.state.firstVal;
+        this.setState({firstVal: document.querySelector(".simpleCalcSelectFirst").value});
+        this.setState({secondVal:  document.querySelector(".simpleCalcSelectSecond").value});
         this.setState({resultNumber: ''});
     }
     
@@ -53,7 +55,7 @@ class ConvSimple extends React.Component {
         let secondNumConverter = (1 / (this.state.values[this.state.secondVal])).toFixed(4);
         this.setState({resultNumber: ((this.state.firstNumber * firstNumConverter) / secondNumConverter).toFixed(4)})
     }
-    
+        
     componentDidMount(){
         this.getData();
     }
@@ -65,9 +67,9 @@ class ConvSimple extends React.Component {
         })
         
         let result = this.state.firstNumber+' '+
-            this.state.firstVal+' '+"="+' '+
-            this.state.resultNumber+' '+
-            this.state.secondVal;
+                     this.state.firstVal+' '+"="+' '+
+                     this.state.resultNumber+' '+
+                     this.state.secondVal;
         
         return (
             <div>
@@ -84,7 +86,8 @@ class ConvSimple extends React.Component {
                  </div>
                  <div className="row">
                      <div className="col-12-12">
-                         <select className="simpleCalcSelectFirst" onClick={this.FirstSelect} onChange={this.FirstSelect}>
+                         <select className="simpleCalcSelectFirst" defaultValue="default" onChange={this.FirstSelect}>
+                            <option value="default" disabled>Choose First Currency</option>
                             {options}
                         </select>
                      </div>
@@ -96,7 +99,8 @@ class ConvSimple extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-12-12">
-                         <select className="simpleCalcSelectSecond" onChange={this.SecondSelect} onClick={this.SecondSelect}>
+                         <select className="simpleCalcSelectSecond" defaultValue="default" onChange={this.SecondSelect} >
+                            <option value="default" disabled>Choose Second Currency</option>
                             {options}
                         </select>
                      </div>
