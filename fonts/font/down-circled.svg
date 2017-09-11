@@ -3,10 +3,14 @@
 <svg xmlns="http://www.w3.org/2000/svg">
 <metadata>Copyright (C) 2017 by original authors @ fontello.com</metadata>
 <defs>
-<font id="fontello" horiz-adv-x="1000" >
-<font-face font-family="fontello" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
+<font id="down-circled" horiz-adv-x="1000" >
+<font-face font-family="down-circled" font-weight="400" font-stretch="normal" units-per-em="1000" ascent="850" descent="-150" />
 <missing-glyph horiz-adv-x="1000" />
 <glyph glyph-name="down-circled" unicode="&#xe800;" d="M0 350q0 207 147 354t353 146 354-146 146-354-146-354-354-146-353 146-147 354z m248 55l252-377 252 377-135 0 0 267-234 0 0-267-135 0z" horiz-adv-x="1000" />
+
+<glyph glyph-name="plus-circled" unicode="&#xe801;" d="M679 314v72q0 14-11 25t-25 10h-143v143q0 15-11 25t-25 11h-71q-15 0-25-11t-11-25v-143h-143q-14 0-25-10t-10-25v-72q0-14 10-25t25-10h143v-143q0-15 11-25t25-11h71q15 0 25 11t11 25v143h143q14 0 25 10t11 25z m178 36q0-117-57-215t-156-156-215-58-216 58-155 156-58 215 58 215 155 156 216 58 215-58 156-156 57-215z" horiz-adv-x="857.1" />
+
+<glyph glyph-name="minus-circled" unicode="&#xe802;" d="M679 314v72q0 14-11 25t-25 10h-429q-14 0-25-10t-10-25v-72q0-14 10-25t25-10h429q14 0 25 10t11 25z m178 36q0-117-57-215t-156-156-215-58-216 58-155 156-58 215 58 215 155 156 216 58 215-58 156-156 57-215z" horiz-adv-x="857.1" />
 
 <glyph glyph-name="exchange" unicode="&#xf0ec;" d="M1000 189v-107q0-7-5-12t-13-6h-768v-107q0-7-5-12t-13-6q-6 0-13 6l-178 178q-5 6-5 13 0 8 5 13l179 178q5 5 12 5 8 0 13-5t5-13v-107h768q7 0 13-5t5-13z m0 304q0-8-5-13l-179-178q-5-6-12-6-8 0-13 6t-5 12v107h-768q-7 0-13 6t-5 12v107q0 8 5 13t13 5h768v107q0 8 5 13t13 5q6 0 13-5l178-178q5-5 5-13z" horiz-adv-x="1000" />
 </font>

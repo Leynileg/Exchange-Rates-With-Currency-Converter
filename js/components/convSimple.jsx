@@ -72,25 +72,24 @@ class ConvSimple extends React.Component {
                      this.state.secondVal;
         
         return (
-            <div>
-                <section id="conv_simple">
-                 <div className='row'>
-                     <div className="col-12-12">
-                      <h2>SIMPLE CURRENCY CONVERTER</h2>
-                  </div>
-                 </div>
-                 <div className="row">
+            <section id="conv_simple">
+                <div className='row'>
+                    <div className="col-12-12">
+                        <h2>SIMPLE CURRENCY CONVERTER</h2>
+                    </div>
+                </div>
+                <div className="row">
                      <div className="col-12-12">
                          <input type="number" className="simpleCalcPutNumber" placeholder="0"  onChange={this.numberChange}/>
                      </div>
-                 </div>
-                 <div className="row">
-                     <div className="col-12-12">
-                         <select className="simpleCalcSelectFirst" defaultValue="default" onChange={this.FirstSelect}>
+                </div>
+                <div className="row">
+                    <div className="col-12-12">
+                        <select className="simpleCalcSelectFirst" defaultValue="default" onChange={this.FirstSelect}>
                             <option value="default" disabled>Choose First Currency</option>
                             {options}
                         </select>
-                     </div>
+                    </div>
                 </div>
                 <div className="row">
                     <div className="col-12-12">
@@ -107,18 +106,17 @@ class ConvSimple extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-12-12">
-                         <i className="icon-down-circled" onClick={this.getResult}></i>
-                     </div>
+                        <i className="icon-down-circled" onClick={this.getResult}></i>
+                    </div>
                 </div>
-                 <div className="row">
-                     <div className="col-12-12">
-                         <div className="calcResult">
-                             <p>{result}</p>
-                         </div>
-                     </div>
-                 </div> 
-              </section>
-            </div>
+                <div className="row">
+                    <div className="col-12-12">
+                        <div className="calcResult">
+                            <p>{result}</p>
+                        </div>
+                    </div>
+                </div> 
+            </section>
         );
     }
 }

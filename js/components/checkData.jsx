@@ -49,44 +49,42 @@ class CheckData extends React.Component {
         })
          
         return (
-            <div>
-                <section id="checkData">
-                  <div className="row">
-                      <div className="col-2-12">
-                         <div className="littleBoxes">USD: {usd} </div>
-                      </div>
-                      <div className="col-2-12">
-                              <div className="littleBoxes">EUR: {eur}</div>
-                      </div>
-                      <div className="col-2-12">
-                          <div className="littleBoxes">NOK: {nok}</div>
-                      </div>
-                      <div className="col-2-12">
-                          <div className="littleBoxes">GDP: {gbp}</div>
-                      </div>
-                      <div className="col-2-12">
-                          <div className="littleBoxes">RUB: {rub}</div>
-                      </div>
-                      <div className="col-2-12">
-                          <div className="littleBoxes">CZK: {czk}</div>
-                      </div>
-                 </div>
-                  <div className="row">
+            <section id="checkData">
+                <div className="row">
+                    <div className="col-2-12">
+                        <div className="littleBoxes">USD: {usd} </div>
+                    </div>
+                    <div className="col-2-12">
+                            <div className="littleBoxes">EUR: {eur}</div>
+                    </div>
+                    <div className="col-2-12">
+                        <div className="littleBoxes">NOK: {nok}</div>
+                    </div>
+                    <div className="col-2-12">
+                        <div className="littleBoxes">GDP: {gbp}</div>
+                    </div>
+                    <div className="col-2-12">
+                        <div className="littleBoxes">RUB: {rub}</div>
+                    </div>
+                    <div className="col-2-12">
+                        <div className="littleBoxes">CZK: {czk}</div>
+                    </div>
+                </div>
+                <div className="row">
                     <h1>CHECK CURRENCY</h1>
-                  </div>
-                  <div className="row">
-                     <div className="col-2-12"/>
-                     <div className="col-2-12">
-                    <select className="selectData" onChange={this.handleChange}>
-                        {options}
-                    </select>
-                 </div>
-                 <div className="col-8-12">
-                      <div className="dataContainer">{this.state.checked}: {this.state.checkedValue}</div>
-                 </div>
-              </div>
-          </section>
-        </div>
+                </div>
+                <div className="row">
+                    <div className="col-2-12"/>
+                    <div className="col-2-12">
+                        <select className="selectData" onChange={this.handleChange}>
+                            {options}
+                        </select>
+                    </div>
+                    <div className="col-8-12">
+                        <div className="dataContainer">{this.state.checked}: {this.state.checkedValue}</div>
+                    </div>
+                </div>
+            </section>
         );
     }
 }

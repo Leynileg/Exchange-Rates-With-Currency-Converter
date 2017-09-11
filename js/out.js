@@ -787,7 +787,7 @@ module.exports = ExecutionEnvironment;
 
 
 
-var _prodInvariant = __webpack_require__(17);
+var _prodInvariant = __webpack_require__(18);
 
 var ReactCurrentOwner = __webpack_require__(10);
 
@@ -1285,7 +1285,7 @@ var _prodInvariant = __webpack_require__(3),
 var CallbackQueue = __webpack_require__(62);
 var PooledClass = __webpack_require__(15);
 var ReactFeatureFlags = __webpack_require__(63);
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(20);
 var Transaction = __webpack_require__(29);
 
 var invariant = __webpack_require__(1);
@@ -2476,6 +2476,16 @@ module.exports = PooledClass;
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
+
+
+module.exports = __webpack_require__(17);
+
+
+/***/ }),
+/* 17 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
 /* WEBPACK VAR INJECTION */(function(process) {/**
  * Copyright 2013-present, Facebook, Inc.
  * All rights reserved.
@@ -2610,7 +2620,7 @@ module.exports = React;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 17 */
+/* 18 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2654,7 +2664,17 @@ function reactProdInvariant(code) {
 module.exports = reactProdInvariant;
 
 /***/ }),
-/* 18 */
+/* 19 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+module.exports = __webpack_require__(101);
+
+
+/***/ }),
+/* 20 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2826,7 +2846,7 @@ module.exports = ReactReconciler;
 /* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(0)))
 
 /***/ }),
-/* 19 */
+/* 21 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -2947,26 +2967,6 @@ DOMLazyTree.queueHTML = queueHTML;
 DOMLazyTree.queueText = queueText;
 
 module.exports = DOMLazyTree;
-
-/***/ }),
-/* 20 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(16);
-
-
-/***/ }),
-/* 21 */
-/***/ (function(module, exports, __webpack_require__) {
-
-"use strict";
-
-
-module.exports = __webpack_require__(101);
-
 
 /***/ }),
 /* 22 */
@@ -5245,7 +5245,7 @@ module.exports = getEventModifierState;
 
 
 
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(21);
 var Danger = __webpack_require__(120);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactInstrumentation = __webpack_require__(8);
@@ -5544,7 +5544,7 @@ var _prodInvariant = __webpack_require__(3);
 var ReactPropTypesSecret = __webpack_require__(71);
 var propTypesFactory = __webpack_require__(56);
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(17);
 var PropTypes = propTypesFactory(React.isValidElement);
 
 var invariant = __webpack_require__(1);
@@ -6589,7 +6589,7 @@ module.exports = getEventCharCode;
 
 
 
-var _prodInvariant = __webpack_require__(17),
+var _prodInvariant = __webpack_require__(18),
     _assign = __webpack_require__(4);
 
 var ReactNoopUpdateQueue = __webpack_require__(52);
@@ -8602,7 +8602,7 @@ module.exports = instantiateReactComponent;
 
 var _prodInvariant = __webpack_require__(3);
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(17);
 
 var invariant = __webpack_require__(1);
 
@@ -9193,9 +9193,9 @@ module.exports = getActiveElement;
 
 var _prodInvariant = __webpack_require__(3);
 
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(21);
 var DOMProperty = __webpack_require__(13);
-var React = __webpack_require__(16);
+var React = __webpack_require__(17);
 var ReactBrowserEventEmitter = __webpack_require__(33);
 var ReactCurrentOwner = __webpack_require__(10);
 var ReactDOMComponentTree = __webpack_require__(5);
@@ -9205,7 +9205,7 @@ var ReactFeatureFlags = __webpack_require__(63);
 var ReactInstanceMap = __webpack_require__(25);
 var ReactInstrumentation = __webpack_require__(8);
 var ReactMarkupChecksum = __webpack_require__(178);
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(20);
 var ReactUpdateQueue = __webpack_require__(48);
 var ReactUpdates = __webpack_require__(11);
 
@@ -10237,11 +10237,11 @@ module.exports = __webpack_require__(85);
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(20);
+var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(21);
+var _reactDom = __webpack_require__(19);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -10251,7 +10251,9 @@ var _checkData = __webpack_require__(187);
 
 var _convSimple = __webpack_require__(188);
 
-var _Footer = __webpack_require__(189);
+var _convMulti = __webpack_require__(189);
+
+var _Footer = __webpack_require__(190);
 
 function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -10279,6 +10281,7 @@ var App = function (_React$Component) {
                 _react2.default.createElement(_nav.Nav, null),
                 _react2.default.createElement(_checkData.CheckData, null),
                 _react2.default.createElement(_convSimple.ConvSimple, null),
+                _react2.default.createElement(_convMulti.ConvMulti, null),
                 _react2.default.createElement(_Footer.Footer, null)
             );
         }
@@ -10505,7 +10508,7 @@ module.exports = ReactChildren;
 
 
 
-var _prodInvariant = __webpack_require__(17);
+var _prodInvariant = __webpack_require__(18);
 
 var invariant = __webpack_require__(1);
 
@@ -10622,7 +10625,7 @@ module.exports = PooledClass;
 
 
 
-var _prodInvariant = __webpack_require__(17);
+var _prodInvariant = __webpack_require__(18);
 
 var ReactCurrentOwner = __webpack_require__(10);
 var REACT_ELEMENT_TYPE = __webpack_require__(53);
@@ -11043,7 +11046,7 @@ module.exports = ReactDOMFactories;
 
 
 
-var _prodInvariant = __webpack_require__(17);
+var _prodInvariant = __webpack_require__(18);
 
 var ReactPropTypeLocationNames = __webpack_require__(92);
 var ReactPropTypesSecret = __webpack_require__(93);
@@ -12728,7 +12731,7 @@ module.exports = factory;
  */
 
 
-var _prodInvariant = __webpack_require__(17);
+var _prodInvariant = __webpack_require__(18);
 
 var ReactElement = __webpack_require__(14);
 
@@ -12778,7 +12781,7 @@ module.exports = onlyChild;
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDefaultInjection = __webpack_require__(102);
 var ReactMount = __webpack_require__(81);
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(20);
 var ReactUpdates = __webpack_require__(11);
 var ReactVersion = __webpack_require__(180);
 
@@ -15068,7 +15071,7 @@ module.exports = ReactComponentBrowserEnvironment;
 
 var _prodInvariant = __webpack_require__(3);
 
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(21);
 var ExecutionEnvironment = __webpack_require__(6);
 
 var createNodesFromMarkup = __webpack_require__(121);
@@ -15487,7 +15490,7 @@ var _prodInvariant = __webpack_require__(3),
 
 var AutoFocusUtils = __webpack_require__(126);
 var CSSPropertyOperations = __webpack_require__(127);
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(21);
 var DOMNamespaces = __webpack_require__(41);
 var DOMProperty = __webpack_require__(13);
 var DOMPropertyOperations = __webpack_require__(70);
@@ -17499,7 +17502,7 @@ module.exports = ReactDOMInput;
 
 var _assign = __webpack_require__(4);
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(17);
 var ReactDOMComponentTree = __webpack_require__(5);
 var ReactDOMSelect = __webpack_require__(72);
 
@@ -17798,7 +17801,7 @@ var ReactInstanceMap = __webpack_require__(25);
 var ReactInstrumentation = __webpack_require__(8);
 
 var ReactCurrentOwner = __webpack_require__(10);
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(20);
 var ReactChildReconciler = __webpack_require__(141);
 
 var emptyFunction = __webpack_require__(9);
@@ -18243,7 +18246,7 @@ module.exports = ReactMultiChild;
 
 
 
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(20);
 
 var instantiateReactComponent = __webpack_require__(73);
 var KeyEscapeUtils = __webpack_require__(47);
@@ -18405,14 +18408,14 @@ module.exports = ReactChildReconciler;
 var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
-var React = __webpack_require__(16);
+var React = __webpack_require__(17);
 var ReactComponentEnvironment = __webpack_require__(44);
 var ReactCurrentOwner = __webpack_require__(10);
 var ReactErrorUtils = __webpack_require__(36);
 var ReactInstanceMap = __webpack_require__(25);
 var ReactInstrumentation = __webpack_require__(8);
 var ReactNodeTypes = __webpack_require__(74);
-var ReactReconciler = __webpack_require__(18);
+var ReactReconciler = __webpack_require__(20);
 
 if (process.env.NODE_ENV !== 'production') {
   var checkReactTypeSpec = __webpack_require__(143);
@@ -19854,7 +19857,7 @@ module.exports = ReactServerUpdateQueue;
 
 var _assign = __webpack_require__(4);
 
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(21);
 var ReactDOMComponentTree = __webpack_require__(5);
 
 var ReactDOMEmptyComponent = function (instantiate) {
@@ -20063,7 +20066,7 @@ var _prodInvariant = __webpack_require__(3),
     _assign = __webpack_require__(4);
 
 var DOMChildrenOperations = __webpack_require__(40);
-var DOMLazyTree = __webpack_require__(19);
+var DOMLazyTree = __webpack_require__(21);
 var ReactDOMComponentTree = __webpack_require__(5);
 
 var escapeTextContentForBrowser = __webpack_require__(32);
@@ -22921,11 +22924,11 @@ exports.Nav = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(20);
+var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(21);
+var _reactDom = __webpack_require__(19);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -22950,40 +22953,36 @@ var Nav = function (_React$Component) {
         key: 'render',
         value: function render() {
             return _react2.default.createElement(
-                'div',
-                null,
+                'header',
+                { id: 'nav' },
                 _react2.default.createElement(
-                    'header',
-                    { id: 'nav' },
+                    'ul',
+                    null,
                     _react2.default.createElement(
-                        'ul',
+                        'li',
                         null,
                         _react2.default.createElement(
-                            'li',
-                            null,
-                            _react2.default.createElement(
-                                'a',
-                                { href: '#checkData' },
-                                'CURRENCIES'
-                            )
-                        ),
+                            'a',
+                            { href: '#checkData' },
+                            'CURRENCIES'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        null,
                         _react2.default.createElement(
-                            'li',
-                            null,
-                            _react2.default.createElement(
-                                'a',
-                                { href: '#conv_simple' },
-                                'SIMPLE'
-                            )
-                        ),
+                            'a',
+                            { href: '#conv_simple' },
+                            'SIMPLE'
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'li',
+                        null,
                         _react2.default.createElement(
-                            'li',
-                            null,
-                            _react2.default.createElement(
-                                'a',
-                                { href: '#conv_multi' },
-                                'MULTI'
-                            )
+                            'a',
+                            { href: '#conv_multi' },
+                            'MULTI'
                         )
                     )
                 )
@@ -23010,11 +23009,11 @@ exports.CheckData = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(20);
+var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(21);
+var _reactDom = __webpack_require__(19);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -23091,108 +23090,104 @@ var CheckData = function (_React$Component) {
             });
 
             return _react2.default.createElement(
-                'div',
-                null,
+                'section',
+                { id: 'checkData' },
                 _react2.default.createElement(
-                    'section',
-                    { id: 'checkData' },
+                    'div',
+                    { className: 'row' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'row' },
+                        { className: 'col-2-12' },
                         _react2.default.createElement(
                             'div',
-                            { className: 'col-2-12' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'littleBoxes' },
-                                'USD: ',
-                                usd,
-                                ' '
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-2-12' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'littleBoxes' },
-                                'EUR: ',
-                                eur
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-2-12' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'littleBoxes' },
-                                'NOK: ',
-                                nok
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-2-12' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'littleBoxes' },
-                                'GDP: ',
-                                gbp
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-2-12' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'littleBoxes' },
-                                'RUB: ',
-                                rub
-                            )
-                        ),
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-2-12' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'littleBoxes' },
-                                'CZK: ',
-                                czk
-                            )
+                            { className: 'littleBoxes' },
+                            'USD: ',
+                            usd,
+                            ' '
                         )
                     ),
                     _react2.default.createElement(
                         'div',
-                        { className: 'row' },
+                        { className: 'col-2-12' },
                         _react2.default.createElement(
-                            'h1',
-                            null,
-                            'CHECK CURRENCY'
+                            'div',
+                            { className: 'littleBoxes' },
+                            'EUR: ',
+                            eur
                         )
                     ),
                     _react2.default.createElement(
                         'div',
-                        { className: 'row' },
-                        _react2.default.createElement('div', { className: 'col-2-12' }),
+                        { className: 'col-2-12' },
                         _react2.default.createElement(
                             'div',
-                            { className: 'col-2-12' },
-                            _react2.default.createElement(
-                                'select',
-                                { className: 'selectData', onChange: this.handleChange },
-                                options
-                            )
-                        ),
+                            { className: 'littleBoxes' },
+                            'NOK: ',
+                            nok
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-2-12' },
                         _react2.default.createElement(
                             'div',
-                            { className: 'col-8-12' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'dataContainer' },
-                                this.state.checked,
-                                ': ',
-                                this.state.checkedValue
-                            )
+                            { className: 'littleBoxes' },
+                            'GDP: ',
+                            gbp
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-2-12' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'littleBoxes' },
+                            'RUB: ',
+                            rub
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-2-12' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'littleBoxes' },
+                            'CZK: ',
+                            czk
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'h1',
+                        null,
+                        'CHECK CURRENCY'
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement('div', { className: 'col-2-12' }),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-2-12' },
+                        _react2.default.createElement(
+                            'select',
+                            { className: 'selectData', onChange: this.handleChange },
+                            options
+                        )
+                    ),
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-8-12' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'dataContainer' },
+                            this.state.checked,
+                            ': ',
+                            this.state.checkedValue
                         )
                     )
                 )
@@ -23219,11 +23214,11 @@ exports.ConvSimple = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(20);
+var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(21);
+var _reactDom = __webpack_require__(19);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 
@@ -23319,101 +23314,97 @@ var ConvSimple = function (_React$Component) {
             var result = this.state.firstNumber + ' ' + this.state.firstVal + ' ' + "=" + ' ' + this.state.resultNumber + ' ' + this.state.secondVal;
 
             return _react2.default.createElement(
-                'div',
-                null,
+                'section',
+                { id: 'conv_simple' },
                 _react2.default.createElement(
-                    'section',
-                    { id: 'conv_simple' },
+                    'div',
+                    { className: 'row' },
                     _react2.default.createElement(
                         'div',
-                        { className: 'row' },
+                        { className: 'col-12-12' },
+                        _react2.default.createElement(
+                            'h2',
+                            null,
+                            'SIMPLE CURRENCY CONVERTER'
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-12-12' },
+                        _react2.default.createElement('input', { type: 'number', className: 'simpleCalcPutNumber', placeholder: '0', onChange: this.numberChange })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-12-12' },
+                        _react2.default.createElement(
+                            'select',
+                            { className: 'simpleCalcSelectFirst', defaultValue: 'default', onChange: this.FirstSelect },
+                            _react2.default.createElement(
+                                'option',
+                                { value: 'default', disabled: true },
+                                'Choose First Currency'
+                            ),
+                            options
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-12-12' },
+                        _react2.default.createElement('i', { className: 'icon-exchange', onClick: this.exchangeValues })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-12-12' },
+                        _react2.default.createElement(
+                            'select',
+                            { className: 'simpleCalcSelectSecond', defaultValue: 'default', onChange: this.SecondSelect },
+                            _react2.default.createElement(
+                                'option',
+                                { value: 'default', disabled: true },
+                                'Choose Second Currency'
+                            ),
+                            options
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-12-12' },
+                        _react2.default.createElement('i', { className: 'icon-down-circled', onClick: this.getResult })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-12-12' },
                         _react2.default.createElement(
                             'div',
-                            { className: 'col-12-12' },
+                            { className: 'calcResult' },
                             _react2.default.createElement(
-                                'h2',
+                                'p',
                                 null,
-                                'SIMPLE CURRENCY CONVERTER'
-                            )
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'row' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-12-12' },
-                            _react2.default.createElement('input', { type: 'number', className: 'simpleCalcPutNumber', placeholder: '0', onChange: this.numberChange })
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'row' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-12-12' },
-                            _react2.default.createElement(
-                                'select',
-                                { className: 'simpleCalcSelectFirst', defaultValue: 'default', onChange: this.FirstSelect },
-                                _react2.default.createElement(
-                                    'option',
-                                    { value: 'default', disabled: true },
-                                    'Choose First Currency'
-                                ),
-                                options
-                            )
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'row' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-12-12' },
-                            _react2.default.createElement('i', { className: 'icon-exchange', onClick: this.exchangeValues })
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'row' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-12-12' },
-                            _react2.default.createElement(
-                                'select',
-                                { className: 'simpleCalcSelectSecond', defaultValue: 'default', onChange: this.SecondSelect },
-                                _react2.default.createElement(
-                                    'option',
-                                    { value: 'default', disabled: true },
-                                    'Choose Second Currency'
-                                ),
-                                options
-                            )
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'row' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-12-12' },
-                            _react2.default.createElement('i', { className: 'icon-down-circled', onClick: this.getResult })
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'row' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'col-12-12' },
-                            _react2.default.createElement(
-                                'div',
-                                { className: 'calcResult' },
-                                _react2.default.createElement(
-                                    'p',
-                                    null,
-                                    result
-                                )
+                                result
                             )
                         )
                     )
@@ -23437,15 +23428,298 @@ exports.ConvSimple = ConvSimple;
 Object.defineProperty(exports, "__esModule", {
     value: true
 });
+exports.ConvMulti = undefined;
+
+var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+var _react = __webpack_require__(16);
+
+var _react2 = _interopRequireDefault(_react);
+
+var _reactDom = __webpack_require__(19);
+
+var _reactDom2 = _interopRequireDefault(_reactDom);
+
+function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+var ConvMulti = function (_React$Component) {
+    _inherits(ConvMulti, _React$Component);
+
+    function ConvMulti(props) {
+        _classCallCheck(this, ConvMulti);
+
+        var _this = _possibleConstructorReturn(this, (ConvMulti.__proto__ || Object.getPrototypeOf(ConvMulti)).call(this, props));
+
+        _this.numberChange = function (e) {
+            _this.setState({ firstNumber: e.target.value });
+        };
+
+        _this.FirstSelect = function (e) {
+            _this.setState({ firstVal: e.target.value });
+            _this.setState({ resultNumber: '' });
+            _this.getData();
+        };
+
+        _this.SecondSelect = function (e) {
+            _this.setState({ secondVal: e.target.value });
+            _this.setState({ resultNumber: '' });
+        };
+
+        _this.getResult = function () {
+            var firstNumConverter = (1 / _this.state.values[_this.state.firstVal]).toFixed(4);
+            var secondNumConverter = (1 / _this.state.values[_this.state.secondVal]).toFixed(4);
+            _this.setState({ resultNumber: (_this.state.firstNumber * firstNumConverter / secondNumConverter).toFixed(4) });
+        };
+
+        _this.state = {
+            values: [],
+            names: [],
+            firstNumber: 0,
+            firstVal: 'AUD',
+            secondVal: '',
+            resultNumber: ''
+        };
+        return _this;
+    }
+
+    _createClass(ConvMulti, [{
+        key: 'getData',
+        value: function getData() {
+            var _this2 = this;
+
+            fetch('https://api.fixer.io/latest?base=' + this.state.firstVal).then(function (response) {
+                if (response.ok) {
+                    return response.json();
+                } else {
+                    throw new Error('Błąd sieci!');
+                };
+            }).then(function (obj) {
+                _this2.setState({ values: obj.rates });
+                _this2.setState({ names: Object.keys(obj.rates) });
+            });
+        }
+    }, {
+        key: 'componentDidMount',
+        value: function componentDidMount() {
+            this.getData();
+        }
+    }, {
+        key: 'render',
+        value: function render() {
+
+            var options = this.state.names.map(function (el) {
+                return _react2.default.createElement(
+                    'option',
+                    { key: el, value: el },
+                    el
+                );
+            });
+
+            var result = this.state.firstNumber + ' ' + this.state.firstVal + ' ' + "=" + ' ' + this.state.resultNumber + ' ' + this.state.secondVal;
+
+            return _react2.default.createElement(
+                'section',
+                { id: 'conv_multi' },
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-12-12' },
+                        _react2.default.createElement(
+                            'h2',
+                            null,
+                            'MULTI CURRENCY CONVERTER'
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-12-12' },
+                        _react2.default.createElement('input', { type: 'number', className: 'defaultPutNumber', placeholder: '0' }),
+                        _react2.default.createElement(
+                            'select',
+                            { className: 'multiCalcSelect', defaultValue: 'default' },
+                            _react2.default.createElement(
+                                'option',
+                                { value: 'default', disabled: true },
+                                'Choose Currency'
+                            ),
+                            options
+                        ),
+                        _react2.default.createElement('i', { className: 'icon-plus-circled', onclick: '' })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-12-12' },
+                        _react2.default.createElement('input', { type: 'number', className: 'addedInput', placeholder: '0' }),
+                        _react2.default.createElement(
+                            'select',
+                            { className: 'multiCalcSelect', defaultValue: 'default' },
+                            _react2.default.createElement(
+                                'option',
+                                { value: 'default', disabled: true },
+                                'Choose Currency'
+                            ),
+                            options
+                        ),
+                        _react2.default.createElement('i', { className: 'icon-minus-circled', onclick: '' })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-12-12' },
+                        _react2.default.createElement('input', { type: 'number', className: 'addedInput', placeholder: '0' }),
+                        _react2.default.createElement(
+                            'select',
+                            { className: 'multiCalcSelect', defaultValue: 'default' },
+                            _react2.default.createElement(
+                                'option',
+                                { value: 'default', disabled: true },
+                                'Choose Currency'
+                            ),
+                            options
+                        ),
+                        _react2.default.createElement('i', { className: 'icon-minus-circled', onclick: '' })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-12-12' },
+                        _react2.default.createElement('input', { type: 'number', className: 'addedInput', placeholder: '0' }),
+                        _react2.default.createElement(
+                            'select',
+                            { className: 'multiCalcSelect', defaultValue: 'default' },
+                            _react2.default.createElement(
+                                'option',
+                                { value: 'default', disabled: true },
+                                'Choose Currency'
+                            ),
+                            options
+                        ),
+                        _react2.default.createElement('i', { className: 'icon-minus-circled', onclick: '' })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-12-12' },
+                        _react2.default.createElement('input', { type: 'number', className: 'addedInput', placeholder: '0' }),
+                        _react2.default.createElement(
+                            'select',
+                            { className: 'multiCalcSelect', defaultValue: 'default' },
+                            _react2.default.createElement(
+                                'option',
+                                { value: 'default', disabled: true },
+                                'Choose Currency'
+                            ),
+                            options
+                        ),
+                        _react2.default.createElement('i', { className: 'icon-minus-circled', onclick: '' })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-12-12' },
+                        _react2.default.createElement(
+                            'select',
+                            { className: 'convertToSelect', defaultValue: 'default' },
+                            _react2.default.createElement(
+                                'option',
+                                { value: 'default', disabled: true },
+                                'CONVERT TO'
+                            ),
+                            options
+                        )
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-12-12' },
+                        _react2.default.createElement('i', { className: 'icon-down-circled', onclick: '' })
+                    )
+                ),
+                _react2.default.createElement(
+                    'div',
+                    { className: 'row' },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-12-12' },
+                        _react2.default.createElement(
+                            'div',
+                            { className: 'calcResult' },
+                            _react2.default.createElement(
+                                'p',
+                                null,
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'result' },
+                                    'STILL...'
+                                ),
+                                _react2.default.createElement(
+                                    'span',
+                                    { className: 'primVal' },
+                                    'IN PROGRESS!'
+                                )
+                            )
+                        )
+                    )
+                )
+            );
+        }
+    }]);
+
+    return ConvMulti;
+}(_react2.default.Component);
+
+exports.ConvMulti = ConvMulti;
+
+/***/ }),
+/* 190 */
+/***/ (function(module, exports, __webpack_require__) {
+
+"use strict";
+
+
+Object.defineProperty(exports, "__esModule", {
+    value: true
+});
 exports.Footer = undefined;
 
 var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
-var _react = __webpack_require__(20);
+var _react = __webpack_require__(16);
 
 var _react2 = _interopRequireDefault(_react);
 
-var _reactDom = __webpack_require__(21);
+var _reactDom = __webpack_require__(19);
 
 var _reactDom2 = _interopRequireDefault(_reactDom);
 

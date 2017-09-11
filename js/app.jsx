@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import {Nav} from './components/nav.jsx';
 import {CheckData} from './components/checkData.jsx';
 import {ConvSimple} from './components/convSimple.jsx';
+import {ConvMulti} from './components/convMulti.jsx';
 import {Footer} from './components/Footer.jsx';
 
 class App extends React.Component {
@@ -12,6 +13,7 @@ class App extends React.Component {
                 <Nav/>
                 <CheckData/>
                 <ConvSimple/>
+                <ConvMulti/>
                 <Footer/>
             </div>
         )

@@ -1,11 +1,11 @@
 @font-face {
-  font-family: 'fontello';
-  src: url('../font/fontello.eot?94647554');
-  src: url('../font/fontello.eot?94647554#iefix') format('embedded-opentype'),
-       url('../font/fontello.woff2?94647554') format('woff2'),
-       url('../font/fontello.woff?94647554') format('woff'),
-       url('../font/fontello.ttf?94647554') format('truetype'),
-       url('../font/fontello.svg?94647554#fontello') format('svg');
+  font-family: 'down-circled';
+  src: url('../font/down-circled.eot?57859482');
+  src: url('../font/down-circled.eot?57859482#iefix') format('embedded-opentype'),
+       url('../font/down-circled.woff2?57859482') format('woff2'),
+       url('../font/down-circled.woff?57859482') format('woff'),
+       url('../font/down-circled.ttf?57859482') format('truetype'),
+       url('../font/down-circled.svg?57859482#down-circled') format('svg');
   font-weight: normal;
   font-style: normal;
 }
@@ -14,14 +14,14 @@
 /*
 @media screen and (-webkit-min-device-pixel-ratio:0) {
   @font-face {
-    font-family: 'fontello';
-    src: url('../font/fontello.svg?94647554#fontello') format('svg');
+    font-family: 'down-circled';
+    src: url('../font/down-circled.svg?57859482#down-circled') format('svg');
   }
 }
 */
  
  [class^="icon-"]:before, [class*=" icon-"]:before {
-  font-family: "fontello";
+  font-family: "down-circled";
   font-style: normal;
   font-weight: normal;
   speak: none;
@@ -56,4 +56,6 @@
 }
  
 .icon-down-circled:before { content: '\e800'; } /* '' */
+.icon-plus-circled:before { content: '\e801'; } /* '' */
+.icon-minus-circled:before { content: '\e802'; } /* '' */
 .icon-exchange:before { content: '\f0ec'; } /* '' */
