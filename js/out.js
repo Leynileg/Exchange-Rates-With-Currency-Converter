@@ -23456,14 +23456,13 @@ var ConvMulti = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (ConvMulti.__proto__ || Object.getPrototypeOf(ConvMulti)).call(this, props));
 
-        _this.numberChange = function (e) {
-            _this.setState({ firstNumber: e.target.value });
-        };
-
         _this.FirstSelect = function (e) {
             _this.setState({ firstVal: e.target.value });
             _this.setState({ resultNumber: '' });
-            _this.getData();
+        };
+
+        _this.FirstNumber = function (e) {
+            _this.setState({ firstNum: e.target.value });
         };
 
         _this.SecondSelect = function (e) {
@@ -23471,19 +23470,71 @@ var ConvMulti = function (_React$Component) {
             _this.setState({ resultNumber: '' });
         };
 
+        _this.SecondNumber = function (e) {
+            _this.setState({ secondNum: e.target.value });
+        };
+
+        _this.ThirdSelect = function (e) {
+            _this.setState({ thirdVal: e.target.value });
+            _this.setState({ resultNumber: '' });
+        };
+
+        _this.ThirdNumber = function (e) {
+            _this.setState({ thirdNum: e.target.value });
+        };
+
+        _this.FourthSelect = function (e) {
+            _this.setState({ fourthVal: e.target.value });
+            _this.setState({ resultNumber: '' });
+        };
+
+        _this.FourthNumber = function (e) {
+            _this.setState({ fourthNum: e.target.value });
+        };
+
+        _this.FifthSelect = function (e) {
+            _this.setState({ fifthVal: e.target.value });
+            _this.setState({ resultNumber: '' });
+        };
+
+        _this.FifthNumber = function (e) {
+            _this.setState({ fifthNum: e.target.value });
+        };
+
+        _this.ConvertorSelect = function (e) {
+            _this.setState({ convertVal: e.target.value });
+            _this.getData();
+        };
+
         _this.getResult = function () {
+
             var firstNumConverter = (1 / _this.state.values[_this.state.firstVal]).toFixed(4);
             var secondNumConverter = (1 / _this.state.values[_this.state.secondVal]).toFixed(4);
-            _this.setState({ resultNumber: (_this.state.firstNumber * firstNumConverter / secondNumConverter).toFixed(4) });
+            var thirdNumConverter = (1 / _this.state.values[_this.state.thirdVal]).toFixed(4);
+            var fourthNumConverter = (1 / _this.state.values[_this.state.fourthVal]).toFixed(4);
+            var fifthNumConverter = (1 / _this.state.values[_this.state.fifthVal]).toFixed(4);
+            var converter = (1 / _this.state.values[_this.state.convertVal]).toFixed(4);
+
+            var result = +(_this.state.firstNum * firstNumConverter / converter).toFixed(4) + +(_this.state.secondNum * secondNumConverter / converter).toFixed(4) + +(_this.state.thirdNum * thirdNumConverter / converter).toFixed(4) + +(_this.state.fourthNum * fourthNumConverter / converter).toFixed(4) + +(_this.state.fifthNum * fifthNumConverter / converter).toFixed(4);
+
+            _this.setState({ resultNumber: result });
         };
 
         _this.state = {
             values: [],
             names: [],
-            firstNumber: 0,
-            firstVal: 'AUD',
-            secondVal: '',
-            resultNumber: ''
+            firstNum: 0,
+            firstVal: '',
+            secondNum: 0,
+            secondVal: 'BGN',
+            thirdNum: 0,
+            thirdVal: 'BGN',
+            fourthNum: 0,
+            fourthVal: 'BGN',
+            fifthNum: 0,
+            fifthVal: 'BGN',
+            convertVal: 'AUD',
+            resultNumber: 0
         };
         return _this;
     }
@@ -23493,7 +23544,7 @@ var ConvMulti = function (_React$Component) {
         value: function getData() {
             var _this2 = this;
 
-            fetch('https://api.fixer.io/latest?base=' + this.state.firstVal).then(function (response) {
+            fetch('https://api.fixer.io/latest?base=' + this.state.convertVal).then(function (response) {
                 if (response.ok) {
                     return response.json();
                 } else {
@@ -23512,7 +23563,6 @@ var ConvMulti = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-
             var options = this.state.names.map(function (el) {
                 return _react2.default.createElement(
                     'option',
@@ -23521,7 +23571,7 @@ var ConvMulti = function (_React$Component) {
                 );
             });
 
-            var result = this.state.firstNumber + ' ' + this.state.firstVal + ' ' + "=" + ' ' + this.state.resultNumber + ' ' + this.state.secondVal;
+            var result = this.state.resultNumber + ' ' + this.state.convertVal;
 
             return _react2.default.createElement(
                 'section',
@@ -23545,10 +23595,10 @@ var ConvMulti = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'defaultPutNumber', placeholder: '0' }),
+                        _react2.default.createElement('input', { type: 'number', className: 'firstNumber', placeholder: '0', onChange: this.FirstNumber }),
                         _react2.default.createElement(
                             'select',
-                            { className: 'multiCalcSelect', defaultValue: 'default' },
+                            { className: 'firstSelect', defaultValue: 'default', onChange: this.FirstSelect },
                             _react2.default.createElement(
                                 'option',
                                 { value: 'default', disabled: true },
@@ -23556,7 +23606,7 @@ var ConvMulti = function (_React$Component) {
                             ),
                             options
                         ),
-                        _react2.default.createElement('i', { className: 'icon-plus-circled', onclick: '' })
+                        _react2.default.createElement('i', { className: 'icon-plus-circled' })
                     )
                 ),
                 _react2.default.createElement(
@@ -23565,18 +23615,13 @@ var ConvMulti = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'addedInput', placeholder: '0' }),
+                        _react2.default.createElement('input', { type: 'number', className: 'secondNumber', placeholder: '0', onChange: this.SecondNumber }),
                         _react2.default.createElement(
                             'select',
-                            { className: 'multiCalcSelect', defaultValue: 'default' },
-                            _react2.default.createElement(
-                                'option',
-                                { value: 'default', disabled: true },
-                                'Choose Currency'
-                            ),
+                            { className: 'secondSelect', onChange: this.SecondSelect },
                             options
                         ),
-                        _react2.default.createElement('i', { className: 'icon-minus-circled', onclick: '' })
+                        _react2.default.createElement('i', { className: 'icon-minus-circled' })
                     )
                 ),
                 _react2.default.createElement(
@@ -23585,18 +23630,13 @@ var ConvMulti = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'addedInput', placeholder: '0' }),
+                        _react2.default.createElement('input', { type: 'number', className: 'thirdNumber', placeholder: '0' }),
                         _react2.default.createElement(
                             'select',
-                            { className: 'multiCalcSelect', defaultValue: 'default' },
-                            _react2.default.createElement(
-                                'option',
-                                { value: 'default', disabled: true },
-                                'Choose Currency'
-                            ),
+                            { className: 'thirdSelect', onChange: this.ThirdtSelect },
                             options
                         ),
-                        _react2.default.createElement('i', { className: 'icon-minus-circled', onclick: '' })
+                        _react2.default.createElement('i', { className: 'icon-minus-circled' })
                     )
                 ),
                 _react2.default.createElement(
@@ -23605,18 +23645,13 @@ var ConvMulti = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'addedInput', placeholder: '0' }),
+                        _react2.default.createElement('input', { type: 'number', className: 'fourthNumber', placeholder: '0' }),
                         _react2.default.createElement(
                             'select',
-                            { className: 'multiCalcSelect', defaultValue: 'default' },
-                            _react2.default.createElement(
-                                'option',
-                                { value: 'default', disabled: true },
-                                'Choose Currency'
-                            ),
+                            { className: 'fourthSelec', onChange: this.FourthSelect },
                             options
                         ),
-                        _react2.default.createElement('i', { className: 'icon-minus-circled', onclick: '' })
+                        _react2.default.createElement('i', { className: 'icon-minus-circled' })
                     )
                 ),
                 _react2.default.createElement(
@@ -23625,18 +23660,13 @@ var ConvMulti = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'addedInput', placeholder: '0' }),
+                        _react2.default.createElement('input', { type: 'number', className: 'fifthNumber', placeholder: '0' }),
                         _react2.default.createElement(
                             'select',
-                            { className: 'multiCalcSelect', defaultValue: 'default' },
-                            _react2.default.createElement(
-                                'option',
-                                { value: 'default', disabled: true },
-                                'Choose Currency'
-                            ),
+                            { className: 'fifthSelect', onChange: this.FifthSelect },
                             options
                         ),
-                        _react2.default.createElement('i', { className: 'icon-minus-circled', onclick: '' })
+                        _react2.default.createElement('i', { className: 'icon-minus-circled' })
                     )
                 ),
                 _react2.default.createElement(
@@ -23647,7 +23677,7 @@ var ConvMulti = function (_React$Component) {
                         { className: 'col-12-12' },
                         _react2.default.createElement(
                             'select',
-                            { className: 'convertToSelect', defaultValue: 'default' },
+                            { className: 'convertToSelect', defaultValue: 'default', onChange: this.ConvertorSelect },
                             _react2.default.createElement(
                                 'option',
                                 { value: 'default', disabled: true },
@@ -23663,7 +23693,7 @@ var ConvMulti = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-12-12' },
-                        _react2.default.createElement('i', { className: 'icon-down-circled', onclick: '' })
+                        _react2.default.createElement('i', { className: 'icon-down-circled', onClick: this.getResult })
                     )
                 ),
                 _react2.default.createElement(
@@ -23678,16 +23708,7 @@ var ConvMulti = function (_React$Component) {
                             _react2.default.createElement(
                                 'p',
                                 null,
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'result' },
-                                    'STILL...'
-                                ),
-                                _react2.default.createElement(
-                                    'span',
-                                    { className: 'primVal' },
-                                    'IN PROGRESS!'
-                                )
+                                result
                             )
                         )
                     )
