@@ -7,15 +7,10 @@ class ConvMulti extends React.Component {
         this.state={
             values: [],
             names: [],
-            firstNum: 0,
             firstVal: '',
-            secondNum: 0,
             secondVal: 'BGN',
-            thirdNum: 0,
             thirdVal: 'BGN',
-            fourthNum: 0,
             fourthVal: 'BGN',
-            fifthNum: 0,
             fifthVal: 'BGN',
             convertVal: 'AUD',
             resultNumber: 0
@@ -34,59 +29,50 @@ class ConvMulti extends React.Component {
             this.setState({names: Object.keys(obj.rates)});
         });
     }
-    
-    FirstSelect=(e)=>{
-        this.setState({firstVal: e.target.value});
-        this.setState({resultNumber: ''});
+
+    PlusFunction = (e) => {
+        let list = document.querySelectorAll(".hidden");
+        let plus = document.querySelector(".icon-plus-circled");
+        list.length == 0 ? e.preventDefault() : list[0].classList.remove("hidden");
     }
 
-    FirstNumber = (e) => {
-        this.setState({firstNum: e.target.value});
+    MinusFunction = (e) => {
+        let list = document.querySelectorAll(".hidden");
+        let minus = document.querySelectorAll(".icon-minus-circled");
+        let element = e.target.parentElement.parentElement;
+        element.querySelector("input").value = 0;
+        element.querySelector('select').value = "BGN";
+        this.getResult();
+        element.className += element.className ? ' hidden' : 'hidden';
+    }
+
+    FirstSelect=(e)=>{
+        this.setState({firstVal: e.target.value});
     }
     
     SecondSelect = (e) => {
         this.setState({secondVal: e.target.value});
-        this.setState({resultNumber: ''});
-    }
-
-    SecondNumber = (e) => {
-        this.setState({secondNum: e.target.value});
     }
 
     ThirdSelect = (e) => {
         this.setState({thirdVal: e.target.value});
-        this.setState({resultNumber: ''});
-    }
-
-    ThirdNumber = (e) => {
-        this.setState({thirdNum: e.target.value});
     }
 
     FourthSelect = (e) => {
         this.setState({fourthVal: e.target.value});
-        this.setState({resultNumber: ''});
-    }
-
-    FourthNumber = (e) => {
-        this.setState({fourthNum: e.target.value});
     }
 
     FifthSelect = (e) => {
         this.setState({fifthVal: e.target.value});
-        this.setState({resultNumber: ''});
-    }
-
-    FifthNumber = (e) => {
-        this.setState({fifthNum: e.target.value});
     }
 
     ConvertorSelect = (e) => {
-        this.setState({convertVal: e.target.value})
+        this.setState({convertVal: e.target.value});
+        this.setState({resultNumber: ''});
         this.getData();
     }
     
     getResult = () => {
-    
         let firstNumConverter = (1 / (this.state.values[this.state.firstVal])).toFixed(4);
         let secondNumConverter = (1 / (this.state.values[this.state.secondVal])).toFixed(4);
         let thirdNumConverter = (1 / (this.state.values[this.state.thirdVal])).toFixed(4);
@@ -94,13 +80,19 @@ class ConvMulti extends React.Component {
         let fifthNumConverter = (1 / (this.state.values[this.state.fifthVal])).toFixed(4);
         let converter = (1 / (this.state.values[this.state.convertVal])).toFixed(4);
 
-        let result = +(((this.state.firstNum * firstNumConverter) / converter).toFixed(4)) + 
-                     +(((this.state.secondNum * secondNumConverter) / converter).toFixed(4)) + 
-                     +(((this.state.thirdNum * thirdNumConverter) / converter).toFixed(4)) + 
-                     +(((this.state.fourthNum * fourthNumConverter) / converter).toFixed(4)) +
-                     +(((this.state.fifthNum * fifthNumConverter) / converter).toFixed(4));
+        let firstNum = document.querySelectorAll('.multiInput')[0].value;
+        let secondNum = document.querySelectorAll('.multiInput')[1].value;
+        let thirdNum = document.querySelectorAll('.multiInput')[2].value;
+        let fourthNum = document.querySelectorAll('.multiInput')[3].value;
+        let fifthNum = document.querySelectorAll('.multiInput')[4].value;
 
-        this.setState({resultNumber: result})
+        let resultNum = +(((firstNum * firstNumConverter) / converter).toFixed(4)) + 
+                     +(((secondNum * secondNumConverter) / converter).toFixed(4)) + 
+                     +(((thirdNum * thirdNumConverter) / converter).toFixed(4)) + 
+                     +(((fourthNum * fourthNumConverter) / converter).toFixed(4)) +
+                     +(((fifthNum* fifthNumConverter) / converter).toFixed(4));
+
+        this.setState({resultNumber: resultNum})
     }
         
     componentDidMount(){
@@ -122,72 +114,72 @@ class ConvMulti extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                <div className="col-12-12">
-                    <input type="number" className="firstNumber" placeholder="0" onChange={this.FirstNumber}/>
-                    <select className="firstSelect" defaultValue="default" onChange={this.FirstSelect}>
-                        <option value="default" disabled>Choose Currency</option>
-                        {options}
-                    </select>
-                    <i className="icon-plus-circled"></i>
+                    <div className="col-12-12">
+                        <input type="number" className="multiInput" placeholder="0" onChange={this.FirstNumber}/>
+                        <select className="firstSelect" defaultValue="default" onChange={this.FirstSelect}>
+                            <option value="default" disabled>Choose Currency</option>
+                            {options}
+                        </select>
+                        <i className="icon-plus-circled" onClick={this.PlusFunction}></i>
+                    </div>
                 </div>
-        </div>
-        <div className="row">
-            <div className="col-12-12">
-                <input type="number" className="secondNumber" placeholder="0" onChange={this.SecondNumber}/>
-                <select className="secondSelect"  onChange={this.SecondSelect}>
-                    {options}
-                </select>
-                <i className="icon-minus-circled"></i>
-            </div>
-        </div>
-        <div className="row">
-            <div className="col-12-12">
-                <input type="number" className="thirdNumber" placeholder="0"/>
-                <select className="thirdSelect" onChange={this.ThirdtSelect}>   
-                    {options}
-                </select>
-                <i className="icon-minus-circled"></i>
-            </div>
-        </div>
-        <div className="row">
-            <div className="col-12-12">
-                <input type="number" className="fourthNumber" placeholder="0"/>
-                <select className="fourthSelec"  onChange={this.FourthSelect}>
-                    {options}
-                </select>
-                <i className="icon-minus-circled"></i>
-            </div>
-        </div>
-        <div className="row">
-            <div className="col-12-12">
-                <input type="number" className="fifthNumber" placeholder="0"/>
-                <select className="fifthSelect" onChange={this.FifthSelect}>
-                    {options}
-                </select>
-                <i className="icon-minus-circled"></i>
-            </div>
-        </div>
-        <div className="row">
-            <div className="col-12-12">
-                <select className="convertToSelect" defaultValue="default" onChange={this.ConvertorSelect}>
-                    <option value="default" disabled>CONVERT TO</option>
-                    {options}
-                </select>
-            </div>
-        </div>
-        <div className="row">
-            <div className="col-12-12">
-                <i className="icon-down-circled" onClick={this.getResult}></i>
-            </div>
-        </div>
-        <div className="row">
-            <div className="col-12-12">
-                <div className="calcResult">
-                    <p>{result}</p>
+                <div className="row  hidden">
+                    <div className="col-12-12">
+                        <input type="number" className="multiInput" placeholder="0" onChange={this.SecondNumber}/>
+                        <select className="secondSelect"  onChange={this.SecondSelect}>
+                            {options}
+                        </select>
+                        <i className="icon-minus-circled" onClick={this.MinusFunction}></i>
+                    </div>
                 </div>
-            </div>
-        </div>   
-        </section>
+                <div className="row hidden">
+                    <div className="col-12-12">
+                        <input type="number" className="multiInput" placeholder="0" onChange={this.ThirdNumber}/>
+                        <select className="thirdSelect" onChange={this.ThirdSelect}>   
+                            {options}
+                        </select>
+                        <i className="icon-minus-circled" onClick={this.MinusFunction}></i>
+                    </div>
+                </div>
+                <div className="row hidden">
+                    <div className="col-12-12">
+                        <input type="number" className="multiInput" placeholder="0" onChange={this.FourthNumber}/>
+                        <select className="fourthSelec"  onChange={this.FourthSelect}>
+                            {options}
+                        </select>
+                        <i className="icon-minus-circled" onClick={this.MinusFunction}></i>
+                    </div>
+                </div>
+                <div className="row hidden">
+                    <div className="col-12-12">
+                        <input type="number" className="multiInput" placeholder="0"  onChange={this.FifthNumber}/>
+                        <select className="fifthSelect" onChange={this.FifthSelect}>
+                            {options}
+                        </select>
+                        <i className="icon-minus-circled" onClick={this.MinusFunction}></i>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12-12">
+                        <select className="convertToSelect" defaultValue="default" onChange={this.ConvertorSelect}>
+                            <option value="default" disabled>CONVERT TO</option>
+                            {options}
+                        </select>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12-12">
+                        <i className="icon-down-circled" onClick={this.getResult}></i>
+                    </div>
+                </div>
+                <div className="row">
+                    <div className="col-12-12">
+                        <div className="calcResult">
+                            <p>{result}</p>
+                        </div>
+                    </div>
+                </div>   
+            </section>
         );
     }
 }

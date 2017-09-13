@@ -23456,58 +23456,49 @@ var ConvMulti = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (ConvMulti.__proto__ || Object.getPrototypeOf(ConvMulti)).call(this, props));
 
-        _this.FirstSelect = function (e) {
-            _this.setState({ firstVal: e.target.value });
-            _this.setState({ resultNumber: '' });
+        _this.PlusFunction = function (e) {
+            var list = document.querySelectorAll(".hidden");
+            var plus = document.querySelector(".icon-plus-circled");
+            list.length == 0 ? e.preventDefault() : list[0].classList.remove("hidden");
         };
 
-        _this.FirstNumber = function (e) {
-            _this.setState({ firstNum: e.target.value });
+        _this.MinusFunction = function (e) {
+            var list = document.querySelectorAll(".hidden");
+            var minus = document.querySelectorAll(".icon-minus-circled");
+            var element = e.target.parentElement.parentElement;
+            element.querySelector("input").value = 0;
+            element.querySelector('select').value = "BGN";
+            _this.getResult();
+            element.className += element.className ? ' hidden' : 'hidden';
+        };
+
+        _this.FirstSelect = function (e) {
+            _this.setState({ firstVal: e.target.value });
         };
 
         _this.SecondSelect = function (e) {
             _this.setState({ secondVal: e.target.value });
-            _this.setState({ resultNumber: '' });
-        };
-
-        _this.SecondNumber = function (e) {
-            _this.setState({ secondNum: e.target.value });
         };
 
         _this.ThirdSelect = function (e) {
             _this.setState({ thirdVal: e.target.value });
-            _this.setState({ resultNumber: '' });
-        };
-
-        _this.ThirdNumber = function (e) {
-            _this.setState({ thirdNum: e.target.value });
         };
 
         _this.FourthSelect = function (e) {
             _this.setState({ fourthVal: e.target.value });
-            _this.setState({ resultNumber: '' });
-        };
-
-        _this.FourthNumber = function (e) {
-            _this.setState({ fourthNum: e.target.value });
         };
 
         _this.FifthSelect = function (e) {
             _this.setState({ fifthVal: e.target.value });
-            _this.setState({ resultNumber: '' });
-        };
-
-        _this.FifthNumber = function (e) {
-            _this.setState({ fifthNum: e.target.value });
         };
 
         _this.ConvertorSelect = function (e) {
             _this.setState({ convertVal: e.target.value });
+            _this.setState({ resultNumber: '' });
             _this.getData();
         };
 
         _this.getResult = function () {
-
             var firstNumConverter = (1 / _this.state.values[_this.state.firstVal]).toFixed(4);
             var secondNumConverter = (1 / _this.state.values[_this.state.secondVal]).toFixed(4);
             var thirdNumConverter = (1 / _this.state.values[_this.state.thirdVal]).toFixed(4);
@@ -23515,23 +23506,24 @@ var ConvMulti = function (_React$Component) {
             var fifthNumConverter = (1 / _this.state.values[_this.state.fifthVal]).toFixed(4);
             var converter = (1 / _this.state.values[_this.state.convertVal]).toFixed(4);
 
-            var result = +(_this.state.firstNum * firstNumConverter / converter).toFixed(4) + +(_this.state.secondNum * secondNumConverter / converter).toFixed(4) + +(_this.state.thirdNum * thirdNumConverter / converter).toFixed(4) + +(_this.state.fourthNum * fourthNumConverter / converter).toFixed(4) + +(_this.state.fifthNum * fifthNumConverter / converter).toFixed(4);
+            var firstNum = document.querySelectorAll('.multiInput')[0].value;
+            var secondNum = document.querySelectorAll('.multiInput')[1].value;
+            var thirdNum = document.querySelectorAll('.multiInput')[2].value;
+            var fourthNum = document.querySelectorAll('.multiInput')[3].value;
+            var fifthNum = document.querySelectorAll('.multiInput')[4].value;
 
-            _this.setState({ resultNumber: result });
+            var resultNum = +(firstNum * firstNumConverter / converter).toFixed(4) + +(secondNum * secondNumConverter / converter).toFixed(4) + +(thirdNum * thirdNumConverter / converter).toFixed(4) + +(fourthNum * fourthNumConverter / converter).toFixed(4) + +(fifthNum * fifthNumConverter / converter).toFixed(4);
+
+            _this.setState({ resultNumber: resultNum });
         };
 
         _this.state = {
             values: [],
             names: [],
-            firstNum: 0,
             firstVal: '',
-            secondNum: 0,
             secondVal: 'BGN',
-            thirdNum: 0,
             thirdVal: 'BGN',
-            fourthNum: 0,
             fourthVal: 'BGN',
-            fifthNum: 0,
             fifthVal: 'BGN',
             convertVal: 'AUD',
             resultNumber: 0
@@ -23595,7 +23587,7 @@ var ConvMulti = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'firstNumber', placeholder: '0', onChange: this.FirstNumber }),
+                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0', onChange: this.FirstNumber }),
                         _react2.default.createElement(
                             'select',
                             { className: 'firstSelect', defaultValue: 'default', onChange: this.FirstSelect },
@@ -23606,67 +23598,67 @@ var ConvMulti = function (_React$Component) {
                             ),
                             options
                         ),
-                        _react2.default.createElement('i', { className: 'icon-plus-circled' })
+                        _react2.default.createElement('i', { className: 'icon-plus-circled', onClick: this.PlusFunction })
                     )
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'row' },
+                    { className: 'row  hidden' },
                     _react2.default.createElement(
                         'div',
                         { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'secondNumber', placeholder: '0', onChange: this.SecondNumber }),
+                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0', onChange: this.SecondNumber }),
                         _react2.default.createElement(
                             'select',
                             { className: 'secondSelect', onChange: this.SecondSelect },
                             options
                         ),
-                        _react2.default.createElement('i', { className: 'icon-minus-circled' })
+                        _react2.default.createElement('i', { className: 'icon-minus-circled', onClick: this.MinusFunction })
                     )
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'row' },
+                    { className: 'row hidden' },
                     _react2.default.createElement(
                         'div',
                         { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'thirdNumber', placeholder: '0' }),
+                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0', onChange: this.ThirdNumber }),
                         _react2.default.createElement(
                             'select',
-                            { className: 'thirdSelect', onChange: this.ThirdtSelect },
+                            { className: 'thirdSelect', onChange: this.ThirdSelect },
                             options
                         ),
-                        _react2.default.createElement('i', { className: 'icon-minus-circled' })
+                        _react2.default.createElement('i', { className: 'icon-minus-circled', onClick: this.MinusFunction })
                     )
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'row' },
+                    { className: 'row hidden' },
                     _react2.default.createElement(
                         'div',
                         { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'fourthNumber', placeholder: '0' }),
+                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0', onChange: this.FourthNumber }),
                         _react2.default.createElement(
                             'select',
                             { className: 'fourthSelec', onChange: this.FourthSelect },
                             options
                         ),
-                        _react2.default.createElement('i', { className: 'icon-minus-circled' })
+                        _react2.default.createElement('i', { className: 'icon-minus-circled', onClick: this.MinusFunction })
                     )
                 ),
                 _react2.default.createElement(
                     'div',
-                    { className: 'row' },
+                    { className: 'row hidden' },
                     _react2.default.createElement(
                         'div',
                         { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'fifthNumber', placeholder: '0' }),
+                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0', onChange: this.FifthNumber }),
                         _react2.default.createElement(
                             'select',
                             { className: 'fifthSelect', onChange: this.FifthSelect },
                             options
                         ),
-                        _react2.default.createElement('i', { className: 'icon-minus-circled' })
+                        _react2.default.createElement('i', { className: 'icon-minus-circled', onClick: this.MinusFunction })
                     )
                 ),
                 _react2.default.createElement(
