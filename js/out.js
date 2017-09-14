@@ -23466,7 +23466,7 @@ var ConvMulti = function (_React$Component) {
             var list = document.querySelectorAll(".hidden");
             var minus = document.querySelectorAll(".icon-minus-circled");
             var element = e.target.parentElement.parentElement;
-            element.querySelector("input").value = 0;
+            element.querySelector("input").value = '';
             element.querySelector('select').value = "BGN";
             _this.getResult();
             element.className += element.className ? ' hidden' : 'hidden';

@@ -40,7 +40,7 @@ class ConvMulti extends React.Component {
         let list = document.querySelectorAll(".hidden");
         let minus = document.querySelectorAll(".icon-minus-circled");
         let element = e.target.parentElement.parentElement;
-        element.querySelector("input").value = 0;
+        element.querySelector("input").value = '';
         element.querySelector('select').value = "BGN";
         this.getResult();
         element.className += element.className ? ' hidden' : 'hidden';
