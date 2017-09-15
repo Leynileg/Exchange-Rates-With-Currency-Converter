@@ -23302,7 +23302,6 @@ var ConvSimple = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-
             var options = this.state.names.map(function (el) {
                 return _react2.default.createElement(
                     'option',
@@ -23458,73 +23457,46 @@ var ConvMulti = function (_React$Component) {
 
         _this.PlusFunction = function (e) {
             var list = document.querySelectorAll(".hidden");
-            var plus = document.querySelector(".icon-plus-circled");
             list.length == 0 ? e.preventDefault() : list[0].classList.remove("hidden");
         };
 
         _this.MinusFunction = function (e) {
-            var list = document.querySelectorAll(".hidden");
-            var minus = document.querySelectorAll(".icon-minus-circled");
             var element = e.target.parentElement.parentElement;
             element.querySelector("input").value = '';
             element.querySelector('select').value = "BGN";
-            _this.getResult();
             element.className += element.className ? ' hidden' : 'hidden';
-        };
-
-        _this.FirstSelect = function (e) {
-            _this.setState({ firstVal: e.target.value });
-        };
-
-        _this.SecondSelect = function (e) {
-            _this.setState({ secondVal: e.target.value });
-        };
-
-        _this.ThirdSelect = function (e) {
-            _this.setState({ thirdVal: e.target.value });
-        };
-
-        _this.FourthSelect = function (e) {
-            _this.setState({ fourthVal: e.target.value });
-        };
-
-        _this.FifthSelect = function (e) {
-            _this.setState({ fifthVal: e.target.value });
+            _this.getResult();
         };
 
         _this.ConvertorSelect = function (e) {
             _this.setState({ convertVal: e.target.value });
             _this.setState({ resultNumber: '' });
-            _this.getData();
         };
 
-        _this.getResult = function () {
-            var firstNumConverter = (1 / _this.state.values[_this.state.firstVal]).toFixed(4);
-            var secondNumConverter = (1 / _this.state.values[_this.state.secondVal]).toFixed(4);
-            var thirdNumConverter = (1 / _this.state.values[_this.state.thirdVal]).toFixed(4);
-            var fourthNumConverter = (1 / _this.state.values[_this.state.fourthVal]).toFixed(4);
-            var fifthNumConverter = (1 / _this.state.values[_this.state.fifthVal]).toFixed(4);
-            var converter = (1 / _this.state.values[_this.state.convertVal]).toFixed(4);
+        _this.getResult = function (e) {
+            var valArray = document.querySelectorAll('.multiSelect');
+            var numConverter = [].map.call(valArray, function (select) {
+                return 1 / _this.state.values[select.value];
+            });
+            var toConvert = 1 / _this.state.values[_this.state.convertVal];
 
-            var firstNum = document.querySelectorAll('.multiInput')[0].value;
-            var secondNum = document.querySelectorAll('.multiInput')[1].value;
-            var thirdNum = document.querySelectorAll('.multiInput')[2].value;
-            var fourthNum = document.querySelectorAll('.multiInput')[3].value;
-            var fifthNum = document.querySelectorAll('.multiInput')[4].value;
+            var numArray = document.querySelectorAll('.multiInput');
+            var numbers = [].map.call(numArray, function (input) {
+                return input.value;
+            });
 
-            var resultNum = +(firstNum * firstNumConverter / converter).toFixed(4) + +(secondNum * secondNumConverter / converter).toFixed(4) + +(thirdNum * thirdNumConverter / converter).toFixed(4) + +(fourthNum * fourthNumConverter / converter).toFixed(4) + +(fifthNum * fifthNumConverter / converter).toFixed(4);
+            var result = [].map.call(numConverter, function (el, i) {
+                return el * numbers[i] / toConvert;
+            }).reduce(function (a, b) {
+                return a + b;
+            }).toFixed(5);
 
-            _this.setState({ resultNumber: resultNum });
+            _this.setState({ resultNumber: result });
         };
 
         _this.state = {
             values: [],
             names: [],
-            firstVal: '',
-            secondVal: 'BGN',
-            thirdVal: 'BGN',
-            fourthVal: 'BGN',
-            fifthVal: 'BGN',
             convertVal: 'AUD',
             resultNumber: 0
         };
@@ -23587,10 +23559,10 @@ var ConvMulti = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0', onChange: this.FirstNumber }),
+                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0' }),
                         _react2.default.createElement(
                             'select',
-                            { className: 'firstSelect', defaultValue: 'default', onChange: this.FirstSelect },
+                            { className: 'multiSelect', defaultValue: 'default' },
                             _react2.default.createElement(
                                 'option',
                                 { value: 'default', disabled: true },
@@ -23607,10 +23579,10 @@ var ConvMulti = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0', onChange: this.SecondNumber }),
+                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0' }),
                         _react2.default.createElement(
                             'select',
-                            { className: 'secondSelect', onChange: this.SecondSelect },
+                            { className: 'multiSelect' },
                             options
                         ),
                         _react2.default.createElement('i', { className: 'icon-minus-circled', onClick: this.MinusFunction })
@@ -23622,10 +23594,10 @@ var ConvMulti = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0', onChange: this.ThirdNumber }),
+                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0' }),
                         _react2.default.createElement(
                             'select',
-                            { className: 'thirdSelect', onChange: this.ThirdSelect },
+                            { className: 'multiSelect' },
                             options
                         ),
                         _react2.default.createElement('i', { className: 'icon-minus-circled', onClick: this.MinusFunction })
@@ -23637,10 +23609,10 @@ var ConvMulti = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0', onChange: this.FourthNumber }),
+                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0' }),
                         _react2.default.createElement(
                             'select',
-                            { className: 'fourthSelec', onChange: this.FourthSelect },
+                            { className: 'multiSelect' },
                             options
                         ),
                         _react2.default.createElement('i', { className: 'icon-minus-circled', onClick: this.MinusFunction })
@@ -23652,10 +23624,10 @@ var ConvMulti = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0', onChange: this.FifthNumber }),
+                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0' }),
                         _react2.default.createElement(
                             'select',
-                            { className: 'fifthSelect', onChange: this.FifthSelect },
+                            { className: 'multiSelect' },
                             options
                         ),
                         _react2.default.createElement('i', { className: 'icon-minus-circled', onClick: this.MinusFunction })

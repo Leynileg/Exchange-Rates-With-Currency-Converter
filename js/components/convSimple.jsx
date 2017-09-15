@@ -22,13 +22,13 @@ class ConvSimple extends React.Component {
             } else {throw new Error('Błąd sieci!')};
         })
         .then( obj => {            
-            this.setState({values: obj.rates})
+            this.setState({values: obj.rates});
             this.setState({names: Object.keys(obj.rates)});
         });
     }
     
     numberChange=(e)=>{
-        this.setState({firstNumber: e.target.value})
+        this.setState({firstNumber: e.target.value});
     }
     
     FirstSelect=(e)=>{
@@ -53,7 +53,7 @@ class ConvSimple extends React.Component {
     getResult = () => {
         let firstNumConverter = (1 / (this.state.values[this.state.firstVal])).toFixed(4);
         let secondNumConverter = (1 / (this.state.values[this.state.secondVal])).toFixed(4);
-        this.setState({resultNumber: ((this.state.firstNumber * firstNumConverter) / secondNumConverter).toFixed(4)})
+        this.setState({resultNumber: ((this.state.firstNumber * firstNumConverter) / secondNumConverter).toFixed(4)});
     }
         
     componentDidMount(){
@@ -61,11 +61,10 @@ class ConvSimple extends React.Component {
     }
 
     render(){
-        
         let options=this.state.names.map((el)=>{
             return <option key={el} value={el}>{el}</option>
         })
-        
+
         let result = this.state.firstNumber+' '+
                      this.state.firstVal+' '+"="+' '+
                      this.state.resultNumber+' '+
@@ -79,9 +78,9 @@ class ConvSimple extends React.Component {
                     </div>
                 </div>
                 <div className="row">
-                     <div className="col-12-12">
+                    <div className="col-12-12">
                          <input type="number" className="simpleCalcPutNumber" placeholder="0"  onChange={this.numberChange}/>
-                     </div>
+                    </div>
                 </div>
                 <div className="row">
                     <div className="col-12-12">
@@ -94,15 +93,15 @@ class ConvSimple extends React.Component {
                 <div className="row">
                     <div className="col-12-12">
                          <i className="icon-exchange" onClick={this.exchangeValues}></i>
-                     </div>
+                    </div>
                 </div>
                 <div className="row">
                     <div className="col-12-12">
-                         <select className="simpleCalcSelectSecond" defaultValue="default" onChange={this.SecondSelect} >
+                        <select className="simpleCalcSelectSecond" defaultValue="default" onChange={this.SecondSelect} >
                             <option value="default" disabled>Choose Second Currency</option>
                             {options}
                         </select>
-                     </div>
+                    </div>
                 </div>
                 <div className="row">
                     <div className="col-12-12">
@@ -120,5 +119,4 @@ class ConvSimple extends React.Component {
         );
     }
 }
-
 export {ConvSimple};

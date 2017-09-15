@@ -7,11 +7,6 @@ class ConvMulti extends React.Component {
         this.state={
             values: [],
             names: [],
-            firstVal: '',
-            secondVal: 'BGN',
-            thirdVal: 'BGN',
-            fourthVal: 'BGN',
-            fifthVal: 'BGN',
             convertVal: 'AUD',
             resultNumber: 0
         }
@@ -32,67 +27,41 @@ class ConvMulti extends React.Component {
 
     PlusFunction = (e) => {
         let list = document.querySelectorAll(".hidden");
-        let plus = document.querySelector(".icon-plus-circled");
         list.length == 0 ? e.preventDefault() : list[0].classList.remove("hidden");
     }
 
     MinusFunction = (e) => {
-        let list = document.querySelectorAll(".hidden");
-        let minus = document.querySelectorAll(".icon-minus-circled");
         let element = e.target.parentElement.parentElement;
         element.querySelector("input").value = '';
         element.querySelector('select').value = "BGN";
-        this.getResult();
         element.className += element.className ? ' hidden' : 'hidden';
-    }
-
-    FirstSelect=(e)=>{
-        this.setState({firstVal: e.target.value});
-    }
-    
-    SecondSelect = (e) => {
-        this.setState({secondVal: e.target.value});
-    }
-
-    ThirdSelect = (e) => {
-        this.setState({thirdVal: e.target.value});
-    }
-
-    FourthSelect = (e) => {
-        this.setState({fourthVal: e.target.value});
-    }
-
-    FifthSelect = (e) => {
-        this.setState({fifthVal: e.target.value});
+        this.getResult();
     }
 
     ConvertorSelect = (e) => {
         this.setState({convertVal: e.target.value});
         this.setState({resultNumber: ''});
-        this.getData();
     }
     
-    getResult = () => {
-        let firstNumConverter = (1 / (this.state.values[this.state.firstVal])).toFixed(4);
-        let secondNumConverter = (1 / (this.state.values[this.state.secondVal])).toFixed(4);
-        let thirdNumConverter = (1 / (this.state.values[this.state.thirdVal])).toFixed(4);
-        let fourthNumConverter = (1 / (this.state.values[this.state.fourthVal])).toFixed(4);
-        let fifthNumConverter = (1 / (this.state.values[this.state.fifthVal])).toFixed(4);
-        let converter = (1 / (this.state.values[this.state.convertVal])).toFixed(4);
+    getResult = (e) => {
+        let valArray = document.querySelectorAll('.multiSelect');
+        let numConverter  = [].map.call(valArray, ( select ) => {
+            return 1 / (this.state.values[select.value]);
+        });
+        let toConvert = 1 / (this.state.values[this.state.convertVal]);
+        
+        let numArray = document.querySelectorAll('.multiInput');
+        let numbers  = [].map.call(numArray, ( input ) => {
+            return input.value;
+        });
 
-        let firstNum = document.querySelectorAll('.multiInput')[0].value;
-        let secondNum = document.querySelectorAll('.multiInput')[1].value;
-        let thirdNum = document.querySelectorAll('.multiInput')[2].value;
-        let fourthNum = document.querySelectorAll('.multiInput')[3].value;
-        let fifthNum = document.querySelectorAll('.multiInput')[4].value;
+        let result = [].map.call(numConverter, (el,i) => {
+            return (el * numbers[i] )/toConvert;
+        }).reduce( (a,b) => {
+            return a + b;
+        }).toFixed(5);
 
-        let resultNum = +(((firstNum * firstNumConverter) / converter).toFixed(4)) + 
-                     +(((secondNum * secondNumConverter) / converter).toFixed(4)) + 
-                     +(((thirdNum * thirdNumConverter) / converter).toFixed(4)) + 
-                     +(((fourthNum * fourthNumConverter) / converter).toFixed(4)) +
-                     +(((fifthNum* fifthNumConverter) / converter).toFixed(4));
-
-        this.setState({resultNumber: resultNum})
+        this.setState({resultNumber: result})
     }
         
     componentDidMount(){
@@ -115,8 +84,8 @@ class ConvMulti extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-12-12">
-                        <input type="number" className="multiInput" placeholder="0" onChange={this.FirstNumber}/>
-                        <select className="firstSelect" defaultValue="default" onChange={this.FirstSelect}>
+                        <input type="number" className="multiInput" placeholder="0"/>
+                        <select className="multiSelect" defaultValue="default">
                             <option value="default" disabled>Choose Currency</option>
                             {options}
                         </select>
@@ -125,8 +94,8 @@ class ConvMulti extends React.Component {
                 </div>
                 <div className="row  hidden">
                     <div className="col-12-12">
-                        <input type="number" className="multiInput" placeholder="0" onChange={this.SecondNumber}/>
-                        <select className="secondSelect"  onChange={this.SecondSelect}>
+                        <input type="number" className="multiInput" placeholder="0"/>
+                        <select className="multiSelect">
                             {options}
                         </select>
                         <i className="icon-minus-circled" onClick={this.MinusFunction}></i>
@@ -134,8 +103,8 @@ class ConvMulti extends React.Component {
                 </div>
                 <div className="row hidden">
                     <div className="col-12-12">
-                        <input type="number" className="multiInput" placeholder="0" onChange={this.ThirdNumber}/>
-                        <select className="thirdSelect" onChange={this.ThirdSelect}>   
+                        <input type="number" className="multiInput" placeholder="0"/>
+                        <select className="multiSelect">   
                             {options}
                         </select>
                         <i className="icon-minus-circled" onClick={this.MinusFunction}></i>
@@ -143,8 +112,8 @@ class ConvMulti extends React.Component {
                 </div>
                 <div className="row hidden">
                     <div className="col-12-12">
-                        <input type="number" className="multiInput" placeholder="0" onChange={this.FourthNumber}/>
-                        <select className="fourthSelec"  onChange={this.FourthSelect}>
+                        <input type="number" className="multiInput" placeholder="0"/>
+                        <select className="multiSelect">
                             {options}
                         </select>
                         <i className="icon-minus-circled" onClick={this.MinusFunction}></i>
@@ -152,8 +121,8 @@ class ConvMulti extends React.Component {
                 </div>
                 <div className="row hidden">
                     <div className="col-12-12">
-                        <input type="number" className="multiInput" placeholder="0"  onChange={this.FifthNumber}/>
-                        <select className="fifthSelect" onChange={this.FifthSelect}>
+                        <input type="number" className="multiInput" placeholder="0"/>
+                        <select className="multiSelect">
                             {options}
                         </select>
                         <i className="icon-minus-circled" onClick={this.MinusFunction}></i>
@@ -180,8 +149,7 @@ class ConvMulti extends React.Component {
                     </div>
                 </div>   
             </section>
-        );
+        )
     }
 }
-
 export {ConvMulti};
