@@ -23034,14 +23034,13 @@ var CheckData = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (CheckData.__proto__ || Object.getPrototypeOf(CheckData)).call(this, props));
 
         _this.handleChange = function (e) {
-            _this.setState({ checked: e.target.value });
-            _this.setState({ checkedValue: (1 / _this.state.values[_this.state.checked]).toFixed(4) });
-            _this.getData();
+            _this.setState({ checked: e.target.value, checkedValue: (1 / _this.state.values[e.target.value]).toFixed(4) });
         };
 
         _this.state = {
             values: [],
             names: [],
+            boxesVal: ['USD', 'EUR', 'NOK', 'GBP', 'RUB', 'CZK'],
             checked: 'AUD',
             checkedValue: ''
         };
@@ -23060,8 +23059,7 @@ var CheckData = function (_React$Component) {
                     throw new Error('Błąd sieci!');
                 };
             }).then(function (obj) {
-                _this2.setState({ values: obj.rates });
-                _this2.setState({ names: Object.keys(obj.rates) });
+                _this2.setState({ values: obj.rates, names: Object.keys(obj.rates) });
                 _this2.setState({ checkedValue: (1 / _this2.state.values[_this2.state.checked]).toFixed(4) });
             });
         }
@@ -23073,13 +23071,7 @@ var CheckData = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
-
-            var usd = (1 / this.state.values.USD).toFixed(4);
-            var eur = (1 / this.state.values.EUR).toFixed(4);
-            var nok = (1 / this.state.values.NOK).toFixed(4);
-            var gbp = (1 / this.state.values.GBP).toFixed(4);
-            var rub = (1 / this.state.values.RUB).toFixed(4);
-            var czk = (1 / this.state.values.CZK).toFixed(4);
+            var _this3 = this;
 
             var options = this.state.names.map(function (el) {
                 return _react2.default.createElement(
@@ -23089,73 +23081,27 @@ var CheckData = function (_React$Component) {
                 );
             });
 
+            var littleBoxes = this.state.boxesVal.map(function (el) {
+                return _react2.default.createElement(
+                    'div',
+                    { className: 'col-2-12', key: el },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'littleBoxes' },
+                        el,
+                        ' : ',
+                        (1 / _this3.state.values[el]).toFixed(4)
+                    )
+                );
+            });
+
             return _react2.default.createElement(
                 'section',
                 { id: 'checkData' },
                 _react2.default.createElement(
                     'div',
                     { className: 'row' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'col-2-12' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'littleBoxes' },
-                            'USD: ',
-                            usd,
-                            ' '
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'col-2-12' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'littleBoxes' },
-                            'EUR: ',
-                            eur
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'col-2-12' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'littleBoxes' },
-                            'NOK: ',
-                            nok
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'col-2-12' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'littleBoxes' },
-                            'GDP: ',
-                            gbp
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'col-2-12' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'littleBoxes' },
-                            'RUB: ',
-                            rub
-                        )
-                    ),
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'col-2-12' },
-                        _react2.default.createElement(
-                            'div',
-                            { className: 'littleBoxes' },
-                            'CZK: ',
-                            czk
-                        )
-                    )
+                    littleBoxes
                 ),
                 _react2.default.createElement(
                     'div',
@@ -23238,42 +23184,41 @@ var ConvSimple = function (_React$Component) {
 
         var _this = _possibleConstructorReturn(this, (ConvSimple.__proto__ || Object.getPrototypeOf(ConvSimple)).call(this, props));
 
-        _this.numberChange = function (e) {
-            _this.setState({ firstNumber: e.target.value });
-        };
-
         _this.FirstSelect = function (e) {
             _this.setState({ firstVal: e.target.value });
-            _this.setState({ resultNumber: '' });
             _this.getData();
         };
 
         _this.SecondSelect = function (e) {
             _this.setState({ secondVal: e.target.value });
-            _this.setState({ resultNumber: '' });
         };
 
-        _this.exchangeValues = function (e) {
-            document.querySelector(".simpleCalcSelectFirst").value = _this.state.secondVal;
-            document.querySelector(".simpleCalcSelectSecond").value = _this.state.firstVal;
-            _this.setState({ firstVal: document.querySelector(".simpleCalcSelectFirst").value });
-            _this.setState({ secondVal: document.querySelector(".simpleCalcSelectSecond").value });
-            _this.setState({ resultNumber: '' });
+        _this.exchangeValues = function () {
+            document.querySelectorAll(".simpleSelect")[0].value = _this.state.secondVal;
+            document.querySelectorAll(".simpleSelect")[1].value = _this.state.firstVal;
+            _this.setState({ firstVal: document.querySelectorAll(".simpleSelect")[0].value });
+            _this.setState({ secondVal: document.querySelectorAll(".simpleSelect")[1].value });
+            _this.setState({ result: '' });
         };
 
-        _this.getResult = function () {
-            var firstNumConverter = (1 / _this.state.values[_this.state.firstVal]).toFixed(4);
-            var secondNumConverter = (1 / _this.state.values[_this.state.secondVal]).toFixed(4);
-            _this.setState({ resultNumber: (_this.state.firstNumber * firstNumConverter / secondNumConverter).toFixed(4) });
+        _this.getResult = function (e) {
+            var number = document.querySelector('.simpleInput').value;
+            if (document.querySelectorAll(".simpleSelect")[0].value == 'default' || document.querySelectorAll(".simpleSelect")[1].value == 'default' || number == '') e.preventDefault();else {
+                document.querySelectorAll('.calcResult')[0].classList.remove('hidden');
+                var firstNumConverter = (1 / _this.state.values[_this.state.firstVal]).toFixed(4);
+                var secondNumConverter = (1 / _this.state.values[_this.state.secondVal]).toFixed(4);
+
+                var all = number + ' ' + document.querySelectorAll('.simpleSelect')[0].value + ' = ' + (number * firstNumConverter / secondNumConverter).toFixed(4) + ' ' + document.querySelectorAll('.simpleSelect')[1].value;
+                _this.setState({ result: all });
+            }
         };
 
         _this.state = {
             values: [],
             names: [],
-            firstNumber: 0,
             firstVal: 'AUD',
             secondVal: '',
-            resultNumber: ''
+            result: ''
         };
         return _this;
     }
@@ -23290,8 +23235,7 @@ var ConvSimple = function (_React$Component) {
                     throw new Error('Błąd sieci!');
                 };
             }).then(function (obj) {
-                _this2.setState({ values: obj.rates });
-                _this2.setState({ names: Object.keys(obj.rates) });
+                _this2.setState({ values: obj.rates, names: Object.keys(obj.rates) });
             });
         }
     }, {
@@ -23309,8 +23253,6 @@ var ConvSimple = function (_React$Component) {
                     el
                 );
             });
-
-            var result = this.state.firstNumber + ' ' + this.state.firstVal + ' ' + "=" + ' ' + this.state.resultNumber + ' ' + this.state.secondVal;
 
             return _react2.default.createElement(
                 'section',
@@ -23334,7 +23276,7 @@ var ConvSimple = function (_React$Component) {
                     _react2.default.createElement(
                         'div',
                         { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'simpleCalcPutNumber', placeholder: '0', onChange: this.numberChange })
+                        _react2.default.createElement('input', { type: 'number', className: 'simpleInput', placeholder: '0' })
                     )
                 ),
                 _react2.default.createElement(
@@ -23345,7 +23287,7 @@ var ConvSimple = function (_React$Component) {
                         { className: 'col-12-12' },
                         _react2.default.createElement(
                             'select',
-                            { className: 'simpleCalcSelectFirst', defaultValue: 'default', onChange: this.FirstSelect },
+                            { className: 'simpleSelect', defaultValue: 'default', onChange: this.FirstSelect },
                             _react2.default.createElement(
                                 'option',
                                 { value: 'default', disabled: true },
@@ -23372,7 +23314,7 @@ var ConvSimple = function (_React$Component) {
                         { className: 'col-12-12' },
                         _react2.default.createElement(
                             'select',
-                            { className: 'simpleCalcSelectSecond', defaultValue: 'default', onChange: this.SecondSelect },
+                            { className: 'simpleSelect', defaultValue: 'default', onChange: this.SecondSelect },
                             _react2.default.createElement(
                                 'option',
                                 { value: 'default', disabled: true },
@@ -23399,11 +23341,11 @@ var ConvSimple = function (_React$Component) {
                         { className: 'col-12-12' },
                         _react2.default.createElement(
                             'div',
-                            { className: 'calcResult' },
+                            { className: 'calcResult hidden' },
                             _react2.default.createElement(
                                 'p',
                                 null,
-                                result
+                                this.state.result
                             )
                         )
                     )
@@ -23456,49 +23398,46 @@ var ConvMulti = function (_React$Component) {
         var _this = _possibleConstructorReturn(this, (ConvMulti.__proto__ || Object.getPrototypeOf(ConvMulti)).call(this, props));
 
         _this.PlusFunction = function (e) {
-            var list = document.querySelectorAll(".hidden");
-            list.length == 0 ? e.preventDefault() : list[0].classList.remove("hidden");
+            var list = document.querySelectorAll('.hidden');
+            list.length == 0 ? e.preventDefault() : list[0].classList.remove('hidden');
         };
 
         _this.MinusFunction = function (e) {
             var element = e.target.parentElement.parentElement;
-            element.querySelector("input").value = '';
-            element.querySelector('select').value = "BGN";
+            element.querySelector('input').value = '';
+            element.querySelector('select').value = 'BGN';
             element.className += element.className ? ' hidden' : 'hidden';
             _this.getResult();
         };
 
         _this.ConvertorSelect = function (e) {
-            _this.setState({ convertVal: e.target.value });
-            _this.setState({ resultNumber: '' });
+            _this.setState({ convertVal: e.target.value, resultNumber: '' });
         };
 
         _this.getResult = function (e) {
-            var valArray = document.querySelectorAll('.multiSelect');
-            var numConverter = [].map.call(valArray, function (select) {
-                return 1 / _this.state.values[select.value];
-            });
-            var toConvert = 1 / _this.state.values[_this.state.convertVal];
-
-            var numArray = document.querySelectorAll('.multiInput');
-            var numbers = [].map.call(numArray, function (input) {
-                return input.value;
-            });
-
-            var result = [].map.call(numConverter, function (el, i) {
-                return el * numbers[i] / toConvert;
-            }).reduce(function (a, b) {
-                return a + b;
-            }).toFixed(5);
-
-            _this.setState({ resultNumber: result });
+            if (document.querySelectorAll(".multiSelect")[0].value == 'default' || document.querySelector(".convertToSelect").value == 'default') e.preventDefault();else {
+                document.querySelectorAll('.calcResult')[1].classList.remove('hidden');
+                var numConverter = [].map.call(document.querySelectorAll('.multiSelect'), function (select) {
+                    return 1 / _this.state.values[select.value];
+                });
+                var toConvert = 1 / _this.state.values[_this.state.convertVal];
+                var numbers = [].map.call(document.querySelectorAll('.multiInput'), function (input) {
+                    return input.value;
+                });
+                var result = [].map.call(numConverter, function (el, i) {
+                    return el * numbers[i] / toConvert;
+                }).reduce(function (a, b) {
+                    return a + b;
+                }).toFixed(4);
+                _this.setState({ resultNumber: result });
+            }
         };
 
         _this.state = {
             values: [],
             names: [],
             convertVal: 'AUD',
-            resultNumber: 0
+            resultNumber: ''
         };
         return _this;
     }
@@ -23515,8 +23454,7 @@ var ConvMulti = function (_React$Component) {
                     throw new Error('Błąd sieci!');
                 };
             }).then(function (obj) {
-                _this2.setState({ values: obj.rates });
-                _this2.setState({ names: Object.keys(obj.rates) });
+                _this2.setState({ values: obj.rates, names: Object.keys(obj.rates) });
             });
         }
     }, {
@@ -23527,6 +23465,8 @@ var ConvMulti = function (_React$Component) {
     }, {
         key: 'render',
         value: function render() {
+            var _this3 = this;
+
             var options = this.state.names.map(function (el) {
                 return _react2.default.createElement(
                     'option',
@@ -23534,7 +23474,23 @@ var ConvMulti = function (_React$Component) {
                     el
                 );
             });
-
+            var hidden = [1, 2, 3, 4].map(function (el) {
+                return _react2.default.createElement(
+                    'div',
+                    { className: 'row  hidden', key: el },
+                    _react2.default.createElement(
+                        'div',
+                        { className: 'col-12-12' },
+                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0' }),
+                        _react2.default.createElement(
+                            'select',
+                            { className: 'multiSelect' },
+                            options
+                        ),
+                        _react2.default.createElement('i', { className: 'icon-minus-circled', onClick: _this3.MinusFunction })
+                    )
+                );
+            });
             var result = this.state.resultNumber + ' ' + this.state.convertVal;
 
             return _react2.default.createElement(
@@ -23573,66 +23529,7 @@ var ConvMulti = function (_React$Component) {
                         _react2.default.createElement('i', { className: 'icon-plus-circled', onClick: this.PlusFunction })
                     )
                 ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'row  hidden' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0' }),
-                        _react2.default.createElement(
-                            'select',
-                            { className: 'multiSelect' },
-                            options
-                        ),
-                        _react2.default.createElement('i', { className: 'icon-minus-circled', onClick: this.MinusFunction })
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'row hidden' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0' }),
-                        _react2.default.createElement(
-                            'select',
-                            { className: 'multiSelect' },
-                            options
-                        ),
-                        _react2.default.createElement('i', { className: 'icon-minus-circled', onClick: this.MinusFunction })
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'row hidden' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0' }),
-                        _react2.default.createElement(
-                            'select',
-                            { className: 'multiSelect' },
-                            options
-                        ),
-                        _react2.default.createElement('i', { className: 'icon-minus-circled', onClick: this.MinusFunction })
-                    )
-                ),
-                _react2.default.createElement(
-                    'div',
-                    { className: 'row hidden' },
-                    _react2.default.createElement(
-                        'div',
-                        { className: 'col-12-12' },
-                        _react2.default.createElement('input', { type: 'number', className: 'multiInput', placeholder: '0' }),
-                        _react2.default.createElement(
-                            'select',
-                            { className: 'multiSelect' },
-                            options
-                        ),
-                        _react2.default.createElement('i', { className: 'icon-minus-circled', onClick: this.MinusFunction })
-                    )
-                ),
+                hidden,
                 _react2.default.createElement(
                     'div',
                     { className: 'row' },
@@ -23668,7 +23565,7 @@ var ConvMulti = function (_React$Component) {
                         { className: 'col-12-12' },
                         _react2.default.createElement(
                             'div',
-                            { className: 'calcResult' },
+                            { className: 'calcResult hidden' },
                             _react2.default.createElement(
                                 'p',
                                 null,
