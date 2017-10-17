@@ -1,26 +1,26 @@
-#conv_multi{
-    padding-top: rem(80px);
-    padding-bottom: rem(100px);
-    min-height: rem(950px);
-    background-image: linear-gradient(45deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)),url(../images/Banknotes.jpg);
-    background-size: cover;
-    background-position: center center;
+#convMulti{
+    padding-top: rem(90px);
+    height: rem(800px);
+    background: linear-gradient(45deg, rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.103))#3a6486;
+    
     
     .hidden {
         display: none;
     }
 
-    * {
-        display: flex;
-        justify-content: center; 
-        align-items: center;
-        padding-top: rem(5px);
-        padding-bottom: rem(5px); 
-    }
+    form {
+        min-height: rem(435px);
+        label, .icon-down-circled {
+            display: flex;
+            justify-content: center; 
+            align-items: center;
+            margin: rem(6px) auto;
+        }
+    } 
     
     h2 {
         margin-top: rem(90px);
-        margin-bottom: rem(50px);
+        margin-bottom: rem(70px);
         font-size: rem(50px);
         text-align: center;
         color: white;
@@ -28,23 +28,31 @@
 
     input {
         width: rem(200px);
-        height: rem(18px);
+        height: rem(30px);
         margin-right: rem(8px);
+        border-radius: rem(5px);
+        text-align: center;
+        font-size: rem(20px);
     }
 
     select {
         width: rem(200px);
         height: rem(30px);
+        border-radius: rem(5px);
     }
 
-    .icon-minus-circled, .icon-plus-circled {
+    input, select {
+        margin: rem(5px) rem(5px); 
+    }
+
+    .icon-minus-circled, .icon-plus-circled, .icon-down-circled {
         color: white;
         font-size: 30px;
     }
 
     .icon-down-circled {
         font-size: rem(50px);
-        color: white;
+        transform: rotate(270deg);
     }
 
     .convertToSelect {
@@ -53,14 +61,29 @@
     }
 
     .calcResult {
-        font-size: rem(38px);
+        width: rem(350px);
+        height: rem(170px);
+        margin-bottom: rem(195px);
+        border: rem(12px) double rgb(187, 187, 187);
+        border-radius: rem(5px);
+        font-size: rem(42px);
         text-align: center;
         color: white;
+        background: #1c2e48;
+        overflow: auto;
+
+        p {
+            position: relative;
+            top: 50%;
+            transform: translateY(-50%); 
+        }
     }
 }
 
 @media (max-width: 600px) {
-    #conv_multi {    
+    #convMulti {
+        height: rem(1500px);
+
         * {
             display: flex;
             flex-direction: column;
@@ -73,14 +96,32 @@
         }
         
         input {
-            height: rem(20px);
             margin-bottom: rem(10px);
-            margin-right: 0;
+            
         }
 
         .icon-minus-circled, .icon-plus-circled {
             font-size: rem(35px);
             margin-bottom: rem(15px);
         }
+
+        .icon-down-circled {
+            transform: rotate(0deg);
+        }
+
+        .calcResult{
+            width: 80%;
+        }
     }  
+}
+
+@media (min-width: 600px) and (max-width: 880px) {
+    #convMulti {
+        .calcResult {
+            width: 70%;
+        }
+        form input,select {
+            width: rem(140px);
+        }
+    }
 }

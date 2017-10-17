@@ -1,14 +1,15 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class ConvMulti extends React.Component {
+export class ConvMulti extends React.Component {
     constructor(props){
         super(props);
         this.state={
             values: [],
             names: [],
             convertVal: 'AUD',
-            resultNumber: ''
+            resultNumber: '',
+            resultDisplay: 'none'
         }
     }
     
@@ -30,11 +31,10 @@ class ConvMulti extends React.Component {
     }
 
     MinusFunction = (e) => {
-        let element = e.target.parentElement.parentElement;
+        let element = e.target.parentElement;
         element.querySelector('input').value = '';
         element.querySelector('select').value = 'BGN';
         element.className += element.className ? ' hidden' : 'hidden';
-        this.getResult();
     }
 
     ConvertorSelect = (e) => {
@@ -48,10 +48,15 @@ class ConvMulti extends React.Component {
             let numConverter  = [].map.call(document.querySelectorAll('.multiSelect'), ( select ) => {
                 return 1 / (this.state.values[select.value]);
             });
+            
             let toConvert = 1 / (this.state.values[this.state.convertVal]);
+
             let numbers  = [].map.call(document.querySelectorAll('.multiInput'), ( input ) => { return input.value });
-            let result = [].map.call(numConverter, (el,i) => { return (el * numbers[i] ) / toConvert }).reduce( (a,b) => { return a + b }).toFixed(4);
-            this.setState({resultNumber: result});
+
+            let result = [].map.call(numConverter, (el,i) => { return (el * numbers[i] ) / toConvert })
+            .reduce( (a,b) => { return a + b }).toFixed(4);
+
+            this.setState({resultNumber: result, resultDisplay:'block'});
         }
     }
         
@@ -63,55 +68,50 @@ class ConvMulti extends React.Component {
         let options = this.state.names.map( (el) => { return <option key={el} value={el}>{el}</option> });
         let hidden = [1,2,3,4].map( (el) => {
             return (
-                <div className="row  hidden" key={el}>
-                    <div className="col-12-12">
+                <div className="hidden" key={el}>
+                    <label>
                         <input type="number" className="multiInput" placeholder="0"/>
                         <select className="multiSelect">{options}</select>
                         <i className="icon-minus-circled" onClick={this.MinusFunction}/>
-                    </div>
+                    </label>
                 </div>
             )
         });
         let result = this.state.resultNumber + ' ' + this.state.convertVal;
         
         return (
-            <section id="conv_multi">
+            <section id="convMulti">
                 <div className="row">
                     <div className="col-12-12">
                         <h2>MULTI CURRENCY CONVERTER</h2>
                     </div>
                 </div>
                 <div className="row">
-                    <div className="col-12-12">
-                        <input type="number" className="multiInput" placeholder="0"/>
-                        <select className="multiSelect" defaultValue="default">
-                            <option value="default" disabled>Choose Currency</option>
-                            {options}
-                        </select>
-                        <i className="icon-plus-circled" onClick={this.PlusFunction}/>
+                    <div className="col-6-12">
+                        <form>
+                            <label>
+                                <input type="number" className="multiInput" placeholder="0"/>
+                                <select className="multiSelect" defaultValue="default">
+                                    <option value="default" disabled>Choose Currency</option>
+                                    {options}
+                                </select>
+                                <i className="icon-plus-circled" onClick={this.PlusFunction}/>
+                            </label>
+                            {hidden}
+                            <label>
+                                <select className="convertToSelect" defaultValue="default" onChange={this.ConvertorSelect}>
+                                    <option value="default" disabled>CONVERT TO</option>
+                                    {options}
+                                </select>
+                            </label>
+                            <i className="icon-down-circled" onClick={this.getResult}/>
+                        </form>
+                    </div>
+                    <div className="col-6-12">
+                        <div className="calcResult"><p style={{display: this.state.resultDisplay}}>{result}</p></div>
                     </div>
                 </div>
-                {hidden}
-                <div className="row">
-                    <div className="col-12-12">
-                        <select className="convertToSelect" defaultValue="default" onChange={this.ConvertorSelect}>
-                            <option value="default" disabled>CONVERT TO</option>
-                            {options}
-                        </select>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-12-12">
-                        <i className="icon-down-circled" onClick={this.getResult}></i>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-12-12">
-                        <div className="calcResult hidden"><p>{result}</p></div>
-                    </div>
-                </div>   
             </section>
         )
     }
 }
-export {ConvMulti};

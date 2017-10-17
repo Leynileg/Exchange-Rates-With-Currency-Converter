@@ -1,14 +1,12 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 
-class Footer extends React.Component {
+export class Footer extends React.Component {
     render(){
         return (
               <footer className="footer">
-                  <p>Copyrights 2017 | All Rights Reserved. - Exchange Rates With Converters</p>
+                  <p>Copyrights 2017 | Exchange Rates With Currency Converters</p>
               </footer>
         );
     }
 }
-
-export {Footer};

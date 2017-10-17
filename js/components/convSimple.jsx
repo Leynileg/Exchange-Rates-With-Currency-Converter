@@ -1,7 +1,10 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-class ConvSimple extends React.Component {
+export class ConvSimple extends React.Component {
     constructor(props){
         super(props);
         this.state={
@@ -10,6 +13,7 @@ class ConvSimple extends React.Component {
             firstVal: 'AUD',
             secondVal: '',
             result: '',
+            resultDisplay: 'none'
         }
     }
     
@@ -35,9 +39,11 @@ class ConvSimple extends React.Component {
     exchangeValues = () => {
         document.querySelectorAll(".simpleSelect")[0].value = this.state.secondVal;
         document.querySelectorAll(".simpleSelect")[1].value = this.state.firstVal;
-        this.setState({ firstVal: document.querySelectorAll(".simpleSelect")[0].value });
-        this.setState({ secondVal: document.querySelectorAll(".simpleSelect")[1].value });
-        this.setState({result: ''});
+        this.setState({ 
+            firstVal: document.querySelectorAll(".simpleSelect")[0].value, 
+            secondVal: document.querySelectorAll(".simpleSelect")[1].value,
+            result: ''
+        });
     }
     
     getResult = (e) => {
@@ -49,7 +55,7 @@ class ConvSimple extends React.Component {
             let secondNumConverter = (1 / (this.state.values[this.state.secondVal])).toFixed(4);
             
             let all = number + ' ' + document.querySelectorAll('.simpleSelect')[0].value + ' = ' + ((number * firstNumConverter) / secondNumConverter).toFixed(4) + ' ' + document.querySelectorAll('.simpleSelect')[1].value;
-            this.setState({result: all});
+            this.setState({result: all, resultDisplay: 'block'});
         }
     }
         
@@ -58,10 +64,13 @@ class ConvSimple extends React.Component {
     }
 
     render(){
-        let options = this.state.names.map( (el) => { return <option key={el} value={el}>{el}</option> })
+        let options = this.state.names.map( (el) => { 
+            return <option key={el} value={el}>{el}</option>
+            
+        })
 
         return (
-            <section id="conv_simple">
+            <section id="convSimple">
                 <div className='row'>
                     <div className="col-12-12">
                         <h2>SIMPLE CURRENCY CONVERTER</h2>
@@ -69,42 +78,23 @@ class ConvSimple extends React.Component {
                 </div>
                 <div className="row">
                     <div className="col-12-12">
-                         <input type="number" className="simpleInput" placeholder="0"/>
+                        <form>
+                            <input type="number" className="simpleInput" placeholder="0" required/>
+                            <select className="simpleSelect" defaultValue="default" onChange={this.FirstSelect} required>
+                                <option value="default" disabled>Choose First Currency</option>
+                                {options}
+                            </select>
+                            <i className="icon-exchange" onClick={this.exchangeValues}/>
+                            <select className="simpleSelect" defaultValue="default" onChange={this.SecondSelect} required>
+                                <option value="default" disabled>Choose Second Currency</option>
+                                {options}
+                            </select>
+                            <i className="icon-down-circled" onClick={this.getResult}/>
+                            <div className="calcResult" style={{display: this.state.resultDisplay}}><p>{this.state.result}</p></div>
+                        </form>
                     </div>
                 </div>
-                <div className="row">
-                    <div className="col-12-12">
-                        <select className="simpleSelect" defaultValue="default" onChange={this.FirstSelect}>
-                            <option value="default" disabled>Choose First Currency</option>
-                            {options}
-                        </select>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-12-12">
-                         <i className="icon-exchange" onClick={this.exchangeValues}/>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-12-12">
-                        <select className="simpleSelect" defaultValue="default" onChange={this.SecondSelect} >
-                            <option value="default" disabled>Choose Second Currency</option>
-                            {options}
-                        </select>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-12-12">
-                        <i className="icon-down-circled" onClick={this.getResult}/>
-                    </div>
-                </div>
-                <div className="row">
-                    <div className="col-12-12">
-                        <div className="calcResult hidden"><p>{this.state.result}</p></div>
-                    </div>
-                </div> 
             </section>
         );
     }
 }
-export {ConvSimple};

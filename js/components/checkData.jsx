@@ -1,7 +1,42 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
+import DropDownMenu from 'material-ui/DropDownMenu';
+import MenuItem from 'material-ui/MenuItem';
+import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
-class CheckData extends React.Component{
+
+class Options extends React.Component {
+    
+    render() {
+        let options = this.props.names.map( (el) => { 
+            return <MenuItem value={el} key={el} label={`${el}`} primaryText={`${el}`}/> 
+        })
+
+        const styles = {
+            customWidth: {
+                width: 260,
+                background: 'whitesmoke',
+                color: 'black',
+                textAlign: 'center',
+                fontSize: '30px'
+            },
+            listStyle: {
+                width: 200,
+                fontSize: '25px',
+                background: 'whitesmoke',
+                textAlign: 'center',
+            }
+          };
+
+        return (
+            <DropDownMenu style={styles.customWidth} listStyle={styles.listStyle} maxHeight={300} value={this.props.val} onChange={this.props.onChangeFunc}>
+                {options}
+            </DropDownMenu>
+        );
+      }
+}
+
+export class CheckData extends React.Component{
     constructor(props){
         super(props);
         this.state={
@@ -26,14 +61,15 @@ class CheckData extends React.Component{
         });
     }
     
-    handleChange = (e) => {
-        this.setState({ checked: e.target.value, checkedValue: (1 / this.state.values[e.target.value]).toFixed(4) });
+    handleChange = (e,index,value) => {
+        this.setState({ checked: value });
+        this.setState({ checkedValue: (1 / this.state.values[value]).toFixed(4) });
     }
 
     componentDidMount(){
         this.getData();
     }
-    
+
     render(){
         let options = this.state.names.map( (el) => { return <option key={el} value={el}>{el}</option> });
 
@@ -47,19 +83,25 @@ class CheckData extends React.Component{
  
         return (
             <section id="checkData">
-                <div className="row">{littleBoxes}</div>
-                <div className="row"><h1>CHECK CURRENCY</h1></div>
-                <div className="row">
-                    <div className="col-2-12"/>
-                    <div className="col-2-12">
-                        <select className="selectData" onChange={this.handleChange}>{options}</select>
+                <div className="row boxes" >
+                    <div className="col-12-12">
+                        {littleBoxes}
                     </div>
-                    <div className="col-8-12">
-                        <div className="dataContainer">{this.state.checked}: {this.state.checkedValue}</div>
+                </div>
+                <div className="row title">
+                    <div className="col-12-12"><h1>CHECK CURRENCY</h1></div>   
+                </div>
+                <div className="row currency">
+                    <div className="col-12-12">
+                        <MuiThemeProvider>
+                            <Options names={this.state.names} val={this.state.checked} onChangeFunc={this.handleChange}/>
+                        </MuiThemeProvider>
+                        <div className="dataContainer">
+                            {this.state.checked}: {this.state.checkedValue}
+                        </div>
                     </div>
                 </div>
             </section>
         );
     }
 }
-export {CheckData};
