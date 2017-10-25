@@ -1,7 +1,6 @@
 #convSimple {
     padding-top: rem(90px);
     padding-bottom: rem(100px);
-    margin-bottom: rem(-6px);
     min-height: rem(900px);
     background-image: linear-gradient(45deg, rgba(0,0,0,0.6), rgba(0,0,0,0.6)), 
     url(../images/calculator.jpg);
@@ -9,15 +8,6 @@
     background-repeat: no-repeat;
     background-size: cover;
     
-    * {
-        display: flex;
-        flex-direction: column;
-        justify-content: center; 
-        align-items: center;
-        padding-top: rem(3px);
-        padding-bottom: rem(3px);
-    }
-
     h2 {
         margin-top: rem(80px);
         margin-bottom: rem(40px);
@@ -27,6 +17,9 @@
     }
     
     form {
+        display: flex;
+        flex-direction: column;
+
         * {
             margin: rem(25px) auto; 
         }
@@ -34,8 +27,8 @@
         .simpleSelect {
             width: rem(350px);
             height: rem(35px);
-            padding-top: 8px;
             border-radius: rem(5px);
+            font-size: rem(16px);
         }
     
         .simpleInput {

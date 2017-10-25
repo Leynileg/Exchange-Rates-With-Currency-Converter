@@ -9,7 +9,7 @@ export class ConvMulti extends React.Component {
             names: [],
             convertVal: 'AUD',
             resultNumber: '',
-            resultDisplay: 'none'
+            display: 'none'
         }
     }
     
@@ -34,7 +34,8 @@ export class ConvMulti extends React.Component {
         let element = e.target.parentElement;
         element.querySelector('input').value = '';
         element.querySelector('select').value = 'BGN';
-        element.className += element.className ? ' hidden' : 'hidden';
+        element.className += element.className ? ' hidden' : 'hidden'; 
+        if (this.state.resultNumber != '') this.getResult();
     }
 
     ConvertorSelect = (e) => {
@@ -56,7 +57,7 @@ export class ConvMulti extends React.Component {
             let result = [].map.call(numConverter, (el,i) => { return (el * numbers[i] ) / toConvert })
             .reduce( (a,b) => { return a + b }).toFixed(4);
 
-            this.setState({resultNumber: result, resultDisplay:'block'});
+            this.setState({resultNumber: result, display:'block'});
         }
     }
         
@@ -66,7 +67,7 @@ export class ConvMulti extends React.Component {
 
     render(){
         let options = this.state.names.map( (el) => { return <option key={el} value={el}>{el}</option> });
-        let hidden = [1,2,3,4].map( (el) => {
+        let hidden = [1,2,3,4,5,6].map( (el) => {
             return (
                 <div className="hidden" key={el}>
                     <label>
@@ -108,7 +109,7 @@ export class ConvMulti extends React.Component {
                         </form>
                     </div>
                     <div className="col-6-12">
-                        <div className="calcResult"><p style={{display: this.state.resultDisplay}}>{result}</p></div>
+                        <div className="calcResult"><p style={{display: this.state.display}}>{result}</p></div>
                     </div>
                 </div>
             </section>

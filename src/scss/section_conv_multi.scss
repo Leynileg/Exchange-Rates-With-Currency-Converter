@@ -1,15 +1,15 @@
 #convMulti{
     padding-top: rem(90px);
-    height: rem(800px);
+    height: rem(900px);
     background: linear-gradient(45deg, rgba(0, 0, 0, 0.63), rgba(0, 0, 0, 0.103))#3a6486;
-    
     
     .hidden {
         display: none;
     }
 
     form {
-        min-height: rem(435px);
+        min-height: rem(450px);
+
         label, .icon-down-circled {
             display: flex;
             justify-content: center; 
@@ -39,6 +39,7 @@
         width: rem(200px);
         height: rem(30px);
         border-radius: rem(5px);
+        font-size: rem(15px);
     }
 
     input, select {
@@ -63,8 +64,8 @@
     .calcResult {
         width: rem(350px);
         height: rem(170px);
-        margin-bottom: rem(195px);
         border: rem(12px) double rgb(187, 187, 187);
+        margin: rem(78px) auto rem(178px) auto;
         border-radius: rem(5px);
         font-size: rem(42px);
         text-align: center;
@@ -82,13 +83,19 @@
 
 @media (max-width: 600px) {
     #convMulti {
-        height: rem(1500px);
+        height: 100%;
+        padding-bottom: rem(10px);
 
         * {
             display: flex;
             flex-direction: column;
         }
         
+        form {
+            min-height: rem(300px);
+            margin-bottom: rem(15px);
+        }
+
         h2 {
            font-size: rem(40px);
            margin-top: rem(80px);
@@ -97,7 +104,6 @@
         
         input {
             margin-bottom: rem(10px);
-            
         }
 
         .icon-minus-circled, .icon-plus-circled {
@@ -110,6 +116,7 @@
         }
 
         .calcResult{
+            margin-top: rem(10px);
             width: 80%;
         }
     }  

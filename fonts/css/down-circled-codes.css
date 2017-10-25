@@ -2,4 +2,6 @@
 .icon-down-circled:before { content: '\e800'; } /* '' */
 .icon-plus-circled:before { content: '\e801'; } /* '' */
 .icon-minus-circled:before { content: '\e802'; } /* '' */
+.icon-github-circled:before { content: '\f09b'; } /* '' */
+.icon-linkedin:before { content: '\f0e1'; } /* '' */
 .icon-exchange:before { content: '\f0ec'; } /* '' */
