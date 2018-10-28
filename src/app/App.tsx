@@ -30,7 +30,6 @@ export class AppContainer extends Container<AppContainerState> {
     list: undefined,
     convertFrom: undefined,
     convertTo: undefined,
-    converted: undefined,
   };
 
   getCurrencies = async () => {
