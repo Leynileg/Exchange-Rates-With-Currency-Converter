@@ -2,7 +2,7 @@ var webpack = require('webpack');
 var path = require('path');
 var isProduction = process.argv.indexOf('-p') >= 0;
 var sourcePath = path.join(__dirname, './src');
-var outPath = path.join(__dirname, './dist');
+var outPath = path.join(__dirname, './docs');
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
