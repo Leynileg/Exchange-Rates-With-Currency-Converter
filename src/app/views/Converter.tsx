@@ -3,9 +3,11 @@ import { RouteComponentProps, withRouter } from 'react-router-dom'
 import Select from 'react-select'
 import { Subscribe } from 'unstated'
 
-import * as styles from './style'
-import { ConverterBox } from './components'
-import AppContainer from './containers'
+import ConverterBox from 'app/components/ConverterBox'
+
+import * as styles from '../style'
+import AppContainer from '../containers'
+
 
 class Converter extends React.PureComponent<RouteComponentProps<any, any>> {
   render() {

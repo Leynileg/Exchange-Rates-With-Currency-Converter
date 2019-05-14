@@ -43,7 +43,7 @@ class AppContainer extends Container<AppContainerState> {
       }),
     }))
 
-  removeConvertFromItem = (label): Promise<void> =>
+  removeConvertFromItem = ({ label }): Promise<void> =>
     this.setState(prevState => ({
       convertFrom: prevState.convertFrom.filter(
         listItem => listItem.label !== label,

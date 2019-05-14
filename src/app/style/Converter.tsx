@@ -1,5 +1,4 @@
 import { style, media } from 'typestyle';
-// import { colors } from './vars';
 
 export const ConverterSection = style(
   {

@@ -1,6 +1,6 @@
 import * as React from 'react'
-import App from './App'
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom'
+import App from './App'
 
 class Root extends React.Component<any,any> {
   render() {

@@ -2,13 +2,13 @@ import * as React from 'react'
 
 import { CurrencyProps } from '../App'
 import * as styles from './style'
-import { SliderBox } from './SliderBox'
+import SliderBox from './SliderBox'
 
 type SliderProps = {
   list: CurrencyProps[]
 }
 
-export const Slider: React.StatelessComponent<SliderProps> = ({ list }) => (
+const Slider: React.StatelessComponent<SliderProps> = ({ list }) => (
   <div className={styles.Slider}>
     <div className="content">
       {list.map(({ label, value }, index) => (
@@ -17,3 +17,5 @@ export const Slider: React.StatelessComponent<SliderProps> = ({ list }) => (
     </div>
   </div>
 )
+
+export default Slider

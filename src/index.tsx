@@ -1,9 +1,10 @@
 import * as React from 'react'
 import { render } from 'react-dom'
 import { AppContainer } from 'react-hot-loader'
+import { Provider } from 'unstated'
+
 import Root from './app/Root'
 import './index.css'
-import { Provider } from 'unstated'
 
 const renderFunc = (Component: React.ComponentType<any>) =>
   render(

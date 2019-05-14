@@ -1,14 +1,15 @@
-import * as React from 'react';
-import { withRouter, RouteComponentProps, Link } from 'react-router-dom';
-import * as styles from './style';
+import * as React from 'react'
+import { withRouter, RouteComponentProps, Link } from 'react-router-dom'
+import * as styles from '../style'
 
-class AppContainer extends React.PureComponent<RouteComponentProps<any, any>> {
+class Header extends React.PureComponent<RouteComponentProps<any, any>> {
   render() {
     const {
-      location: { pathname }
-    } = this.props;
+      location: { pathname },
+    } = this.props
 
-    const title: string = pathname === '/' ? 'Exchange Rates' : 'Currency Conventer';
+    const title: string =
+      pathname === '/' ? 'Exchange Rates' : 'Currency Conventer'
 
     return (
       <header>
@@ -28,7 +29,7 @@ class AppContainer extends React.PureComponent<RouteComponentProps<any, any>> {
           </ul>
         </nav>
       </header>
-    );
+    )
   }
 }
-export default withRouter(AppContainer);
+export default withRouter(Header)

@@ -1,10 +1,12 @@
 import * as React from 'react'
 import { RouteComponentProps, withRouter } from 'react-router-dom'
-import * as styles from './style'
-import { Slider } from './components'
 import { Subscribe } from 'unstated'
-import { CurrencyProps } from './App'
-import AppContainer from './containers'
+
+import Slider from 'app/components/Slider'
+
+import * as styles from '../style'
+import { CurrencyProps } from '../App'
+import AppContainer from '../containers'
 
 class Home extends React.PureComponent<RouteComponentProps<any, any>> {
   render() {

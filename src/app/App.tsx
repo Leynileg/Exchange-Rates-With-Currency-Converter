@@ -5,13 +5,14 @@ import {
   withRouter,
   RouteComponentProps,
 } from 'react-router-dom'
+
 import PreloaderIcon from 'react-preloader-icon'
 import Oval from 'react-preloader-icon/loaders/Oval'
 import { Subscribe } from 'unstated'
 
-import Home from './Home'
-import Header from './Header'
-import Converter from './Converter'
+import Home from './views/Home'
+import Converter from './views/Converter'
+import Header from './components/Header'
 import * as styles from './style'
 import { colors } from './style/vars'
 import AppContainer from './containers'

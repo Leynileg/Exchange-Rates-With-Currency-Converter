@@ -1,5 +1,6 @@
 import { style, keyframes, media } from 'typestyle'
-import { colors } from '../../style/vars'
+import { colors } from 'app/style/vars'
+
 const listLength: number = new Array(32).fill(0).length
 
 const AnimationSpeed = '120s'

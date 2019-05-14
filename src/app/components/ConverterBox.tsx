@@ -13,7 +13,7 @@ type ConverterBoxProps = {
   defaultValue: CurrencyProps
 }
 
-export const ConverterBox: React.StatelessComponent<ConverterBoxProps> = ({
+const ConverterBox: React.StatelessComponent<ConverterBoxProps> = ({
   onInputChange,
   defaultValue,
   list,
@@ -38,3 +38,5 @@ export const ConverterBox: React.StatelessComponent<ConverterBoxProps> = ({
     </div>
   </li>
 )
+
+export default ConverterBox

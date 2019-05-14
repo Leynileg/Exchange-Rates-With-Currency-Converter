@@ -1,5 +1,5 @@
 import { style, classes, media } from 'typestyle'
-import { colors } from '../../style/vars'
+import { colors } from 'app/style/vars'
 
 export const flexCentered = style({
   display: 'flex',

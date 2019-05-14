@@ -5,7 +5,7 @@ var sourcePath = path.join(__dirname, './src');
 var outPath = path.join(__dirname, './docs');
 
 var HtmlWebpackPlugin = require('html-webpack-plugin');
-const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+var MiniCssExtractPlugin = require('mini-css-extract-plugin');
 var WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 
 module.exports = {
