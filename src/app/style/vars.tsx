@@ -6,5 +6,5 @@ export const colors = {
   lightBlue: '#9fcfff',
   lightGray: '#f6fafd',
   boxShadow: '1px 1px 22px rgba(157, 184, 209, 0.30)',
-  gray: "#ccc"
-};
+  gray: '#ccc',
+}

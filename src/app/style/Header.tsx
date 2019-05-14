@@ -1,5 +1,5 @@
-import { style, media } from 'typestyle';
-import { colors } from './vars';
+import { style, media } from 'typestyle'
+import { colors } from './vars'
 
 export const Nav = style(
   {
@@ -9,16 +9,19 @@ export const Nav = style(
     justifyContent: 'space-between',
     alignItems: 'center',
     zIndex: 9999,
-    background: colors.blue
+    background: colors.blue,
   },
-  media({ maxWidth: 568 }, { flexDirection: 'column', paddingBottom: 40, textAlign: 'center' })
-);
+  media(
+    { maxWidth: 568 },
+    { flexDirection: 'column', paddingBottom: 40, textAlign: 'center' },
+  ),
+)
 
 export const NavTitle = style({
   color: colors.white,
   fontWeight: 300,
-  fontSize: 30
-});
+  fontSize: 30,
+})
 
 export const NavLink = style({
   margin: 'auto 15px',
@@ -29,15 +32,15 @@ export const NavLink = style({
 
   $nest: {
     '&:hover': {
-      color: colors.darkBlue
+      color: colors.darkBlue,
     },
 
     '&:first-of-type': {
-      marginLeft: 0
+      marginLeft: 0,
     },
 
     '&:last-of-type': {
-      marginRight: 0
-    }
-  }
-});
+      marginRight: 0,
+    },
+  },
+})

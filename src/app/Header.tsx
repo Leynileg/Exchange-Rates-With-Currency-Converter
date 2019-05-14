@@ -8,7 +8,7 @@ class AppContainer extends React.PureComponent<RouteComponentProps<any, any>> {
       location: { pathname }
     } = this.props;
 
-    let title: string = pathname === '/' ? 'Exchange Rates' : 'Currency Conventer';
+    const title: string = pathname === '/' ? 'Exchange Rates' : 'Currency Conventer';
 
     return (
       <header>

@@ -1,54 +1,25 @@
-import * as React from 'react';
-import { Switch, Route, withRouter, RouteComponentProps } from 'react-router-dom';
-import Home from './Home';
-import Header from './Header';
-import Converter from './Converter';
-import * as styles from './style';
-import PreloaderIcon from 'react-preloader-icon';
-import Oval from 'react-preloader-icon/loaders/Oval';
-import { colors } from './style/vars';
-import { Container, Subscribe } from 'unstated';
+import * as React from 'react'
+import {
+  Switch,
+  Route,
+  withRouter,
+  RouteComponentProps,
+} from 'react-router-dom'
+import PreloaderIcon from 'react-preloader-icon'
+import Oval from 'react-preloader-icon/loaders/Oval'
+import { Subscribe } from 'unstated'
 
+import Home from './Home'
+import Header from './Header'
+import Converter from './Converter'
+import * as styles from './style'
+import { colors } from './style/vars'
+import AppContainer from './containers'
 
 export type CurrencyProps = {
-  label: string;
-  value: number;
-  amount?: number;
-};
-
-export type AppContainerState = {
-  selectedCurrency: CurrencyProps;
-  list: CurrencyProps[];
-  convertFrom: CurrencyProps[],
-  convertTo: CurrencyProps,
-};
-
-
-export class AppContainer extends Container<AppContainerState> {
-  state = {
-    selectedCurrency: undefined,
-    list: undefined,
-    convertFrom: undefined,
-    convertTo: undefined,
-  };
-
-  getCurrencies = async () => {
-    await fetch('https://api.exchangeratesapi.io/latest')
-      .then((res) => {
-        return res.json();
-      })
-      .then((obj) => {
-        const array: CurrencyProps[] = Object.keys(obj.rates).map((el, i) => {
-          return {
-            label: el,
-            value: obj.rates[el],
-            amount: 0
-          };
-        }).concat({label: "EUR", amount: 0, value: 1 })
-        this.setState({ list: array, convertFrom: [array[0]] });
-      })
-      .catch((err) => console.log(err));
-  };
+  label: string,
+  value: number
+  amount?: number
 }
 
 class App extends React.Component<RouteComponentProps<any, any>> {
@@ -56,8 +27,8 @@ class App extends React.Component<RouteComponentProps<any, any>> {
     return (
       <Subscribe to={[AppContainer]}>
         {(AppOps: AppContainer) => {
-          if (!AppOps.state.list) {
-            AppOps.getCurrencies();
+          if (!AppOps.state.currencyList) {
+            AppOps.getCurrencies()
             return (
               <PreloaderIcon
                 loader={Oval}
@@ -67,7 +38,7 @@ class App extends React.Component<RouteComponentProps<any, any>> {
                 duration={800}
                 className={styles.Preloader}
               />
-            );
+            )
           }
 
           return (
@@ -78,10 +49,10 @@ class App extends React.Component<RouteComponentProps<any, any>> {
                 <Route component={Converter} exact path="/convert" />
               </Switch>
             </div>
-          );
+          )
         }}
       </Subscribe>
-    );
+    )
   }
 }
-export default withRouter(App);
+export default withRouter(App)

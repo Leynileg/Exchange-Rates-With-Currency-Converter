@@ -1,61 +1,50 @@
-import * as React from 'react';
-import { RouteComponentProps, withRouter } from 'react-router-dom';
-import * as styles from './style';
-import { Subscribe } from 'unstated';
-import { AppContainer } from './App';
-import { ConverterBox } from './components';
-import Select from 'react-select';
+import * as React from 'react'
+import { RouteComponentProps, withRouter } from 'react-router-dom'
+import Select from 'react-select'
+import { Subscribe } from 'unstated'
+
+import * as styles from './style'
+import { ConverterBox } from './components'
+import AppContainer from './containers'
 
 class Converter extends React.PureComponent<RouteComponentProps<any, any>> {
   render() {
     return (
       <Subscribe to={[AppContainer]}>
         {(AppOps: AppContainer) => {
-          const { list, convertFrom, convertTo } = AppOps.state;
-          let converted: number = null;
-          if (convertFrom.find((e) => e.amount) && convertTo) {
-            convertFrom.forEach((el) => {
-              converted = converted + +((convertTo.value / el.value) * el.amount).toFixed(4);
-            });
+          const { currencyList, convertFrom, convertTo } = AppOps.state
+          let converted: number = null
+          if (convertFrom.find(e => e.amount) && !!convertTo) {
+            convertFrom.forEach(({ value, amount }) => {
+              converted =
+                converted + +((convertTo.value / value) * amount).toFixed(4)
+            })
           }
+
           return (
             <section className={styles.ConverterSection}>
               <ul>
-                {convertFrom.map((el, i) => (
+                {convertFrom.map(({ label }, index) => (
                   <ConverterBox
-                    defaultValue={list[i]}
-                    key={i}
-                    firstBox={i === 0 ? true : false}
-                    onInputChange={(input) => {
-                      AppOps.setState({
-                        convertFrom: convertFrom.map(
-                          (obj, ind) =>
-                            ind === i ? { ...obj, amount: +input.currentTarget.value } : obj
-                        )
-                      });
-                    }}
-                    list={list}
-                    onSelectChange={(selected) => {
-                      AppOps.setState({
-                        convertFrom: convertFrom.map(
-                          (obj, ind) => (ind === i ? { ...selected, amount: obj.amount } : obj)
-                        )
-                      });
-                    }}
-                    onButtonClick={() =>
-                      AppOps.setState((prevState) => {
-                        return {
-                          convertFrom:
-                            i === 0
-                              ? prevState.convertFrom.concat({
-                                  label: list[i].label,
-                                  value: list[i].value,
-                                  amount: 0
-                                })
-                              : prevState.convertFrom.filter((obj, objIndex) => objIndex !== i)
-                        };
-                      })
+                    defaultValue={currencyList[index]}
+                    key={`${label}_${index}`}
+                    firstBox={index === 0}
+                    onInputChange={input =>
+                      AppOps.onInputChange({ input, index })
                     }
+                    list={currencyList}
+                    onSelectChange={selected =>
+                      AppOps.onSelectChange({ selected, index })
+                    }
+                    onButtonClick={(): void => {
+                      if (index === 0) {
+                        const hasLeftCurrencies: boolean =
+                          currencyList.length > convertFrom.length + 1
+                        hasLeftCurrencies && AppOps.addNewConverFrom()
+                      } else {
+                        AppOps.removeConvertFromItem({ label })
+                      }
+                    }}
                   />
                 ))}
               </ul>
@@ -63,20 +52,20 @@ class Converter extends React.PureComponent<RouteComponentProps<any, any>> {
                 Convert to:{' '}
                 <Select
                   className={styles.ConvertToSelect}
-                  options={list}
-                  onChange={(e) => AppOps.setState({ convertTo: e })}
+                  options={currencyList}
+                  onChange={value => AppOps.setState({ convertTo: value })}
                 />
               </div>
-              {convertTo && (
+              {!!convertTo && (
                 <h2>
                   {converted} {convertTo.label}
                 </h2>
               )}
             </section>
-          );
+          )
         }}
       </Subscribe>
-    );
+    )
   }
 }
-export default withRouter(Converter);
+export default withRouter(Converter)

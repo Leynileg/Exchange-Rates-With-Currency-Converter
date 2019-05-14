@@ -1,12 +1,12 @@
-import { style, keyframes, media } from 'typestyle';
-import { colors } from '../../style/vars';
-const list: any = new Array(32).fill(0);
+import { style, keyframes, media } from 'typestyle'
+import { colors } from '../../style/vars'
+const listLength: number = new Array(32).fill(0).length
 
-const AnimationSpeed = '120s';
+const AnimationSpeed = '120s'
 const Scroll = keyframes({
   '0%': { transform: `translateX(0)` },
-  '100%': { transform: `translateX(calc(-300px * ${list.length / 2}))` }
-});
+  '100%': { transform: `translateX(calc(-300px * ${listLength / 2}))` },
+})
 
 export const Slider = style(
   {
@@ -22,28 +22,30 @@ export const Slider = style(
 
     $nest: {
       '&::before, &::after': {
-        background: `linear-gradient(to right, ${colors.darkerBlue} 0%, rgba(38, 59, 96, 0) 100%)`,
+        background: `linear-gradient(to right, ${
+          colors.darkerBlue
+        } 0%, rgba(38, 59, 96, 0) 100%)`,
         content: '""',
         height: 100,
         position: 'absolute',
         width: 200,
-        zIndex: 2
+        zIndex: 2,
       },
 
       '&::before': {
         left: 0,
-        top: 0
+        top: 0,
       },
 
       '&::after': {
         right: 0,
         top: 0,
-        transform: 'rotateZ(180deg)'
+        transform: 'rotateZ(180deg)',
       },
 
       '.content': {
         animation: `${Scroll} ${AnimationSpeed} linear infinite`,
-        display: `flex`
+        display: `flex`,
       },
 
       '.item': {
@@ -52,33 +54,33 @@ export const Slider = style(
         display: 'flex',
         justifyContent: 'center',
         alignItems: 'center',
-        color: colors.white
-      }
-    }
+        color: colors.white,
+      },
+    },
   },
   media(
     {
-      maxWidth: 576
+      maxWidth: 576,
     },
     {
       $nest: {
         '&::before, &::after': {
-          width: 80
-        }
-      }
-    }
+          width: 80,
+        },
+      },
+    },
   ),
   media(
     {
       minWidth: 576,
-      maxWidth: 768
+      maxWidth: 768,
     },
     {
       $nest: {
         '&::before, &::after': {
-          width: 100
-        }
-      }
-    }
-  )
-);
+          width: 100,
+        },
+      },
+    },
+  ),
+)

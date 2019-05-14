@@ -1,5 +1,5 @@
-import { style, media } from 'typestyle';
-import { colors } from './vars';
+import { style, media } from 'typestyle'
+import { colors } from './vars'
 
 export const CurrenciesList = style({
   background: colors.white,
@@ -33,24 +33,24 @@ export const CurrenciesList = style({
           $nest: {
             '&:hover': {
               background: colors.blue,
-              color: colors.white
-            }
-          }
-        }
-      }
-    }
-  }
-});
+              color: colors.white,
+            },
+          },
+        },
+      },
+    },
+  },
+})
 
 export const SelectedCurrency = style({
   background: colors.blue,
-  color: colors.white
-});
+  color: colors.white,
+})
 
 export const DisplayedCurrency = style(
   {
-    fontSize: 40
+    fontSize: 40,
   },
-  media({maxWidth: 568}, {fontSize: 30}),
-  media({ maxWidth: 768 }, { padding: `30px 0 50px`, textAlign: 'center' })
-);
+  media({ maxWidth: 568 }, { fontSize: 30 }),
+  media({ maxWidth: 768 }, { padding: `30px 0 50px`, textAlign: 'center' }),
+)
